@@ -1,0 +1,98 @@
+buildscript {
+    ext {
+        springBootVersion = '1.2.2.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        maven { url "http://repo.spring.io/snapshot" }
+        maven { url "http://repo.spring.io/milestone" }        
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")      
+        
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+
+jar {
+    baseName = 'easy.pacs'
+    version = '0.0.1-SNAPSHOT'
+}
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    
+    maven { url "http://repo.spring.io/snapshot" }
+    maven { url "http://repo.spring.io/milestone" }
+    maven { url "http://www.dcm4che.org/maven2"}
+
+    flatDir {
+        dirs 'lib'
+    }
+}
+
+ext {
+    dcm4cheVersion = '3.3.5'
+    slf4jVersion = '1.7.7'    
+    guavaVersion = '18.0'
+    commonsioVersion = '2.4'
+    commonscodecVersion = '1.9'
+}
+
+dependencies {    
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile("org.springframework.boot:spring-boot-starter-logging")
+    compile("org.springframework.boot:spring-boot-starter-log4j")
+    
+	runtime("mysql:mysql-connector-java")
+    testCompile("org.springframework.boot:spring-boot-starter-test") 
+    testCompile("junit:junit")    
+    
+    // guava
+    compile ("com.google.guava:guava:${guavaVersion}")
+    
+    compile('org.springframework.data:spring-data-commons:1.10.0.RELEASE')
+    
+    //io utils
+    compile('org.apache.commons:commons-io:1.3.2')
+    
+    // jackson for json purposes
+    compile('org.codehaus.jackson:jackson-mapper-asl:1.9.13')
+    compile('org.codehaus.jackson:jackson-core-asl:1.9.13')
+    compile('com.fasterxml.jackson.core:jackson-core:2.5.2')
+    
+    //c3p0 - database connection ppol
+  //  compile(
+    	//	"org.hibernate:hibernate-c3p0:4.3.8.Final"
+  //  )
+    
+    
+    // dcm4che
+    compile(
+            "org.dcm4che:dcm4che-core:${dcm4cheVersion}",
+            "org.dcm4che:dcm4che-net:${dcm4cheVersion}",
+            "org.dcm4che.tool:dcm4che-tool-dcm2jpg:${dcm4cheVersion}",
+            "org.dcm4che.tool:dcm4che-tool-storescu:${dcm4cheVersion}"
+    )
+    
+}
+
+eclipse {
+    classpath {
+         containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
+         containers 'org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7'
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}

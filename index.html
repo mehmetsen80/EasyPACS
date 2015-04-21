@@ -27,8 +27,8 @@
 <h3>
 <a id="download" class="anchor" href="#download" aria-hidden="true"><span class="octicon octicon-link"></span></a>Download</h3>
 
-<p><a href="https://s3-us-west-2.amazonaws.com/easypacs/easy.pacs-0.0.1-SNAPSHOT.jar">Download easy-pacs-0-0-1-snapshot.jar</a>
-You can run your jar file with any 32 bit support wrapper. Your EasyPACS server will listen ports 104,1111,2222,3333 for your incoming dicom files. You can enter your dicom server via <strong>http://localhost:8085/</strong>  </p>
+<p>Download <a href="https://s3-us-west-2.amazonaws.com/easypacs/easy.pacs-0.0.1-SNAPSHOT.jar">easy-pacs-0-0-1-snapshot.jar</a>
+You can run your jar file with any 32 bit support wrapper. Your EasyPACS server will listen the ports 104, 1111, 2222, 3333 for your incoming dicom files. You can enter your dicom server via <strong>http://localhost:8085/</strong>  </p>
 
 <h3>
 <a id="object-model" class="anchor" href="#object-model" aria-hidden="true"><span class="octicon octicon-link"></span></a>Object Model</h3>
@@ -82,7 +82,7 @@ Series --&gt; Equipment
 <h3>
 <a id="environmental-variables" class="anchor" href="#environmental-variables" aria-hidden="true"><span class="octicon octicon-link"></span></a>Environmental Variables:</h3>
 
-<p>Make sure that you Environmental Variables are setup correctly</p>
+<p>Make sure that your Environmental Variables are setup correctly</p>
 
 <pre><code>User Defined
 Variable Name:  JAVA_HOME
@@ -95,7 +95,124 @@ Variable Value: %JAVA_HOME%\jre\bin:
 </code></pre>
 
 <h2>
-<a id="setup-your-windows-wrapper-tanuki-wrapper" class="anchor" href="#setup-your-windows-wrapper-tanuki-wrapper" aria-hidden="true"><span class="octicon octicon-link"></span></a>Setup your Windows Wrapper (Tanuki Wrapper)</h2>
+<a id="easy-pacs-as-a-windows-service" class="anchor" href="#easy-pacs-as-a-windows-service" aria-hidden="true"><span class="octicon octicon-link"></span></a>Easy PACS as a Windows Service</h2>
+
+<p>We use Tanuki Windows Wrapper to run Easy PACS as a server. Please follow these steps carefully
+1. Download  and unzip it under C: drive  i.e: <em><strong>C:\EasyPACSService</strong></em></p>
+
+<ul>
+<li>You will see the following EasyPACS Service Folder Structure 
+<img src="https://2kere2beseder.files.wordpress.com/2015/04/monitor1.jpg" alt="EasyPACS Service Folder Structure">
+</li>
+<li>Go to conf/wrapper.conf and update your java path
+<img src="https://2kere2beseder.files.wordpress.com/2015/04/wrapper_java_command.jpg" alt="Wrapper Java Path">
+</li>
+<li>Again in conf/wrapper.conf update your jar names along with version number. Here is an example of the wrapper.conf file</li>
+</ul>
+
+<p><code>#********************************************************************</code>
+<code># Wrapper License Properties (Ignored by Community Edition)</code>
+<code>#********************************************************************</code>
+<code># Include file problems can be debugged by removing the first '#'</code>
+<code>#  from the following line:</code>
+<code>##include.debug</code>
+<code>#include ../conf/wrapper-license.conf</code>
+<code>#include ../conf/wrapper-license-%WRAPPER_HOST_NAME%.conf</code></p>
+
+<p><code>#********************************************************************</code>
+<code># Wrapper Java Properties</code>
+<code>#********************************************************************</code>
+<code># Java Application</code>
+<code>wrapper.java.command=C:\Program Files (x86)\Java\jdk1.8.0_45/bin/java</code></p>
+
+<p><code># Java Main class.  This class must implement the WrapperListener interface</code>
+<code>#  or guarantee that the WrapperManager class is initialized.  Helper</code>
+<code>#  classes are provided to do this for you.  See the Integration section</code>
+<code>#  of the documentation for details.</code>
+<code>wrapper.java.mainclass=org.tanukisoftware.wrapper.WrapperJarApp</code></p>
+
+<p><code># Java Classpath (include wrapper.jar)  Add class path elements as</code>
+<code>#  needed starting from 1</code>
+<code>wrapper.java.classpath.1=../lib/wrapper.jar</code>
+<code>wrapper.java.classpath.2=easy.pacs-0.0.1-SNAPSHOT.jar</code></p>
+
+<p><code># Java Library Path (location of Wrapper.DLL or libwrapper.so)</code>
+<code>wrapper.java.library.path.1=../lib</code></p>
+
+<p><code># Java Additional Parameters</code>
+<code>#wrapper.java.additional.1=-Dprogram.name=run.bat</code></p>
+
+<p><code># Initial Java Heap Size (in MB)</code>
+<code>#wrapper.java.initmemory=1024</code></p>
+
+<p><code># Maximum Java Heap Size (in MB)</code>
+<code>#wrapper.java.maxmemory=2048</code></p>
+
+<p><code># Application parameters.  Add parameters as needed starting from 1</code>
+<code>wrapper.app.parameter.1=easy.pacs-0.0.1-SNAPSHOT.jar</code></p>
+
+<p><code>#********************************************************************</code>
+<code># Wrapper Logging Properties</code>
+<code>#********************************************************************</code>
+<code># Format of output for the console.  (See docs for formats)</code>
+<code>wrapper.console.format=PM</code></p>
+
+<p><code># Log Level for console output.  (See docs for log levels)</code>
+<code>wrapper.console.loglevel=INFO</code></p>
+
+<p><code># Log file to use for wrapper output logging.</code>
+<code>wrapper.logfile=../logs/wrapper.log</code></p>
+
+<p><code># Format of output for the log file.  (See docs for formats)</code>
+<code>wrapper.logfile.format=LPTM</code></p>
+
+<p><code># Log Level for log file output.  (See docs for log levels)</code>
+<code>wrapper.logfile.loglevel=INFO</code></p>
+
+<p><code># Maximum size that the log file will be allowed to grow to before</code>
+<code>#  the log is rolled. Size is specified in bytes.  The default value</code>
+<code>#  of 0, disables log rolling.  May abbreviate with the 'k' (kb) or</code>
+<code>#  'm' (mb) suffix.  For example: 10m = 10 megabytes.</code>
+<code>wrapper.logfile.maxsize=10m</code></p>
+
+<p><code># Maximum number of rolled log files which will be allowed before old</code>
+<code>#  files are deleted.  The default value of 0 implies no limit.</code>
+<code>wrapper.logfile.maxfiles=50</code></p>
+
+<p><code># Log Level for sys/event log output.  (See docs for log levels)</code>
+<code>wrapper.syslog.loglevel=ERROR</code></p>
+
+<p><code>#********************************************************************</code>
+<code># Wrapper Windows Properties</code>
+<code>#********************************************************************</code>
+<code># Title to use when running as a console</code>
+<code>wrapper.console.title=EasyPACS_001</code></p>
+
+<p><code>#********************************************************************</code>
+<code># Wrapper Windows NT/2000/XP Service Properties</code>
+<code>#********************************************************************</code>
+<code># WARNING - Do not modify any of these properties when an application</code>
+<code>#  using this configuration file has been installed as a service.</code>
+<code>#  Please uninstall the service before modifying this section.  The</code>
+<code>#  service can then be reinstalled.</code></p>
+
+<p><code># Name of the service</code>
+<code>wrapper.ntservice.name=EasyPACS_001</code></p>
+
+<p><code># Display name of the service</code>
+<code>wrapper.ntservice.displayname=EasyPACS_001</code></p>
+
+<p><code># Description of the service</code>
+<code>wrapper.ntservice.description=EasyPACS_001</code></p>
+
+<p><code># Service dependencies.  Add dependencies as needed starting from 1</code>
+<code>wrapper.ntservice.dependency.1=</code></p>
+
+<p><code># Mode in which the service is installed.  AUTO_START or DEMAND_START</code>
+<code>wrapper.ntservice.starttype=AUTO_START</code></p>
+
+<p><code># Allow the service to interact with the desktop.</code>
+<code>wrapper.ntservice.interactive=false</code></p>
 
 <ol>
 <li><a href="https://2kere2beseder.files.wordpress.com/2015/04/easy-pacs-0-0-1-snapshot.zip">Download easy-pacs-0-0-1-snapshot.jar</a></li>

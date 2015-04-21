@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html lang="eng" xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/layout">
+<head>	
+    <title>Dicom Server</title> 
+ 	<!-- custom js file -->
+	<script th:src="@{js/server.js}"></script>          
+</head>
+<body>
+
+<div layout:fragment="content">
+
+<div class="container">
+	<div class="page-header">		
+		<h1 th:text="#{easy.server}">PACS Server</h1>
+		<h2><div id='divLive' ></div></h2>
+	</div>
+	
+	<div class="row">
+	<div class="col-sm-12  text-center">		
+		
+			<table id="tblPatients"  class="table table-striped fixed-header">   	
+			<caption>Patients</caption>			
+   					<thead>
+      					<tr>         					
+         					<th>Pk Patient Id</th>
+         					<th>Patient Name</th>
+         					<th>Patient ID</th>         				
+         					<th>Sex</th>
+         					<th>Age</th>
+         					<th>Created Date</th>
+         					<th>Modified Date</th>         					
+      					</tr>
+   					</thead>
+   					<tbody>
+      					<tr th:each="patient,status : ${patients}" >      						
+         					<td><a th:href="${'/details?pkTBLPatientID='+patient?.pkTBLPatientID}" th:text="${patient?.pkTBLPatientID}"></a></td>   
+         					<td><a th:href="${'/details?pkTBLPatientID='+patient?.pkTBLPatientID}" th:text="${patient?.patientName}"></a></td>        					
+         					<td th:text="${patient?.patientID}"></td>
+         					<td th:text="${patient?.patientSex}"></td>
+         					<td th:text="${patient?.patientAge}"></td>
+         					<td th:text="${patient?.createdDate}"></td>			
+         					<td th:text="${patient?.modifiedDate}"></td> 
+         					
+      					</tr>
+      					<tr th:unless="${patients}">
+							<td colspan="8">No patients found</td>
+						</tr>
+      					
+   					</tbody>
+				</table>
+			
+			<div th:replace="fragments/pager :: pager"></div>
+			
+	</div>
+	</div>
+	
+	
+		
+</div>
+
+</div>
+
+
+</body>
+</html>

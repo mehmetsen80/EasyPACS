@@ -1,0 +1,179 @@
+<!DOCTYPE HTML>
+<html lang="eng" xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/layout">
+<head>	
+    <title>Patient Details</title> 
+ 	<!-- custom js file -->
+	<script th:src="@{js/details.js}"></script>          
+</head>
+<body>
+
+<div layout:fragment="content">
+
+<div class="container">
+	<div class="page-header">		
+		<h1 th:text="${patient?.patientName}">Patient Details</h1>		
+	</div>
+	
+	<div class="row">
+	
+	<div class="col-md-5">	
+	
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div id="divImageCount"><h3 class="panel-title">Entities</h3></div>
+			</div>
+			<div class="panel-body text-left">				   
+         	
+         		<!-- setup a container element -->
+  				<div style='font-size:12px;' id="jstree">
+    				<!-- in this example the tree is populated from inline HTML -->
+   	 				<ul>
+      					<li class="jstree-open"><a th:onClick="'getPatient('+${patient.pkTBLPatientID}+')'" th:text="${patient?.patientName + ' has total of ' + patient.getStudy().size() + ' Study'}"  ></a>
+        					<ul>
+          						<li class="jstree-open" th:each="study,status : ${patient.getStudy()}" >
+          							<a th:onClick="'getStudy('+${study.pkTBLStudyID}+')'"  th:text="${study.studyDescription+' has '+ study?.getSeries().size() + ' series'}" ></a>
+          							<ul>
+          								<li th:each="series,status : ${study.getSeries()}" >
+          									<a th:onClick="'getSeries('+${series.pkTBLSeriesID}+')'"  th:text="${series?.seriesDescription+' has '+series.getInstance().size()+' images'}" ></a>
+          									<ul>
+          										<li th:each="instance,status : ${series.getInstance()}" ><a th:onClick="'getInstance('+${instance?.pkTBLInstanceID}+')'"  th:text="${instance?.instanceNumber}" ></a></li>
+          									</ul>
+          								</li>
+          							</ul>
+          						</li>          					
+        					</ul>
+      					</li>      					
+    				</ul>
+  				</div>
+         	
+         		
+			</div>
+		</div>
+	
+	
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Details</h3>
+			</div>
+			<div class="panel-body text-left">	
+				<div id="divPatient">
+					<table id="tblPatient"  class="table table-striped  table-condensed fixed-header">        
+         				<caption>Patient</caption>	
+         				<tbody>
+         					<tr><td>Patient Name</td><td th:text="${patient?.patientName}"></td></tr>
+         					<tr><td>Patient ID</td><td th:text="${patient?.patientID}"></td></tr>
+         					<tr><td>Patient Sex</td><td th:text="${patient?.patientSex}"></td></tr>
+         					<tr><td>Patient Age</td><td th:text="${patient?.patientAge}"></td></tr>         				    				  		
+         				</tbody>
+         			</table>
+         		</div>
+         		
+         		<!-- Study Panel  -->
+         		<div id="divStudy"></div>
+         		<!-- Series Panel -->
+         		<div id="divSeries"></div>
+         		<!-- Equipment Panel  -->
+         		<div id="divEquipment"></div>
+         		<!-- Instance Panel -->
+         		<div id="divInstance"></div>
+         		
+			</div>
+		</div>	
+	</div>
+	
+	
+	<div class="col-md-7 text-center" >	
+		
+		<div class="row">
+			<div id="tabs">
+				<ul>
+					<li><a href="#tabs-1">Images</a></li>
+					<li><a href="#tabs-2">Dicoms</a></li>
+					<li><a href="#tabs-3">Download</a></li>
+				</ul>
+				<div id="tabs-1" >
+				
+				
+					<table id="tblPatient"  class="table table-striped fixed-header">
+   					<caption>Patient</caption>		
+   					<thead>
+							<tr>
+							<th><a th:onClick="'getPatient('+${patient.pkTBLPatientID}+')'" th:text="${patient?.patientName + ' has total of ' + patient.getStudy().size() + ' Study'}"  ></a></th>
+							</tr>
+					</thead>	
+   					<tbody>
+      					<tr th:each="study,status : ${patient.getStudy()}" >
+      						<td> 							
+      							<table id="tblStudy"  class="table">
+   									<caption>Study</caption>   	
+   									<thead>
+										<tr>
+											<th><a th:onClick="'getStudy('+${study.pkTBLStudyID}+')'"  th:text="${study.studyDescription+' has '+ study?.getSeries().size() + ' series'}" ></a></th>
+										</tr>
+									</thead>
+   																
+   									<tbody>
+      									<tr th:each="series,status : ${study.getSeries()}" >
+      										<td>      										
+      											<div class='imagebox' >
+      											<table id="tblSeries" class="table">
+													<caption th:text="${'Series - ' + series.seriesNumber }">Series</caption>
+													<thead>
+														<tr>
+						 									<th ><a th:onClick="'getSeries('+${series.pkTBLSeriesID}+')'"  th:text="${series?.seriesDescription+' has '+series.getInstance().size()+' images'}" ></a></th>
+						 								</tr>
+													</thead>
+						 							<tbody>
+					  									<tr>
+					   										<td>					   																   											
+																<div class="col-md-2 text-center"  th:each="instance,status : ${series.getInstance()}">																	
+																	<a class="fancybox-images fancybox.iframe"   th:href="${'/showimage/'+instance?.pkTBLInstanceID}" rel="image-gallery" 
+																		th:title="${'instanceNumber=['+ instance?.instanceNumber + ']' +', sopInstanceUID=['+ instance?.sopInstanceUID + ']' }" >
+																		<img th:attr="src=@{${'/details/'+instance?.pkTBLInstanceID}} " style="width: 80px; height: 80px; margin:0px; margin-bottom:0px;" />
+																	</a>
+																	
+																	<div style='width:100%; border-style:solid; border-width:0px; margin-bottom:10px; text-align:center'  ><a th:onClick="'getInstance('+${instance?.pkTBLInstanceID}+')'"  th:text="${'No: '+ instance?.instanceNumber}" ></a> </div>
+																</div>
+																
+					    									</td>
+					  									</tr>
+					 								</tbody>
+												</table>
+												</div>
+      										</td>         					
+      									</tr>	 
+   									</tbody>
+								</table>
+      							
+      						</td>         					
+      					</tr>      					     					
+   					</tbody>
+					</table>
+									
+					
+				</div>
+				<div id="tabs-2">
+					<p>To do</p>
+				</div>
+				<div id="tabs-3">
+					<p>To do</p>
+				</div>
+</div>
+			
+		</div>
+	
+	
+	
+	</div>
+	
+	
+	
+	
+	
+	</div>
+</div>
+
+</div>
+
+</body>
+</html>

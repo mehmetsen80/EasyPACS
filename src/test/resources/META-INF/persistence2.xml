@@ -1,0 +1,49 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd" version="1.0">
+  <persistence-unit name="hsqldb-ds" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+    
+   
+     <properties>
+      	<property name="hibernate.hbm2ddl.auto" value="" />
+      	<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLInnoDBDialect"/>
+      	<property name="hibernate.connection.useUnicode" value="true" />
+      	<property name="hibernate.connection.characterEncoding" value="UTF-8" />
+      	<property name="hibernate.show_sql" value="true" />
+      	<property name="hibernate.format_sql" value="true" />
+      	<property name="hibernate.use_sql_comments" value="false" />
+      	<property name="hibernate.generate_statistics" value="false" /> 
+      	<property name="hibernate.transaction.factory_class" value="org.hibernate.transaction.JDBCTransactionFactory" />
+      	<property name="hibernate.current_session_context_class" value="thread" />
+      	<property name="hibernate.ejb.naming_strategy" value="org.hibernate.cfg.DefaultNamingStrategy"/>
+      
+      
+      	<property name="javax.persistence.jdbc.url" value="jdbc:mysql://54.149.87.48:3306/dbdicom" />
+	  	<property name="javax.persistence.jdbc.user" value="dbdcmusr" />
+	  	<property name="javax.persistence.jdbc.password" value="b9jHmY8LSH3yTcd9" />
+	  	<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+      	
+      
+      
+      <!-- hibernate connection string -->
+      <!--  <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />      
+      <property name="hibernate.connection.username" value="dbdcmusr"/>
+      <property name="hibernate.connection.password" value="b9jHmY8LSH3yTcd9"/>
+      <property name="hibernate.connection.url" value="jdbc:mysql://54.149.87.48:3306/dbdicom"/>--> 
+      
+        
+     
+      <!-- c3p0 config http://www.hibernate.org/214.html -->
+     	<property name="connection.provider_class" value="org.hibernate.connection.C3P0ConnectionProvider" />        
+      	<property name="hibernate.c3p0.acquire_increment" value="1" />
+      	<property name="hibernate.c3p0.idle_test_period" value="60" />
+      	<property name="hibernate.c3p0.min_size" value="10" />
+      	<property name="hibernate.c3p0.max_size" value="20" />
+      	<property name="hibernate.c3p0.max_statements" value="50" />
+      	<property name="hibernate.c3p0.timeout" value="0" />
+      	<property name="hibernate.c3p0.acquireRetryAttempts" value="1" />
+      	<property name="hibernate.c3p0.acquireRetryDelay" value="250" /> 
+       
+      
+    </properties>
+  </persistence-unit>
+</persistence>

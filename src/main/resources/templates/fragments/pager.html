@@ -1,0 +1,41 @@
+<div class='pagination pagination-centered' th:fragment="pager">
+            <ul class="pagination">
+               
+               
+               <li th:class="${currentIndex == 1}? 'disabled' : ''">
+                    <span th:if='${currentIndex == 1}'>First</span>
+                    <a th:if='${currentIndex != 1}'
+                       th:href="@{${'?page=1'}}">First</a>
+                </li>
+                <li th:class="${currentIndex != 1}? '' : 'disabled'">
+                    <span th:if='${currentIndex == 1}'>&lt;&lt;</span>
+                    <a th:if='${currentIndex != 1}'
+                       th:href="@{${'?page='+ (currentIndex - 1)}}"
+                       title='Go to previous page'>&lt;&lt;</a>
+                </li>
+
+                <li th:each="item : ${#numbers.sequence(beginIndex,endIndex)}"
+                    th:class="${item == currentIndex ? 'active' : '' }">
+
+                    <span th:if='${item == currentIndex}' th:text='${item}'>1</span>
+
+                    <a th:if='${item != currentIndex}'
+                       th:href="@{${'?page='+item }}">
+                        <span th:text='${item}'>1</span>
+                    </a>
+                </li>
+
+                <li th:class="${currentIndex != maxPages}? '' : 'disabled'">
+                    <span th:if='${currentIndex == maxPages}'>&gt;&gt;</span>
+                    <a th:if='${currentIndex != maxPages}'
+                       th:href="@{${'?page='+(currentIndex + 1)}}" title='Go to next page'>&gt;&gt;</a>
+                </li>
+                <li th:class="${currentIndex == maxPages}? 'disabled' : ''">
+                    <span th:if='${currentIndex == maxPages}'>Last</span>
+                    <a th:if='${currentIndex != maxPages}'
+                       th:href="@{${'?page='+ maxPages}}">Last</a>
+                </li>
+               
+               
+            </ul>
+        </div>

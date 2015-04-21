@@ -1,0 +1,74 @@
+
+
+<div th:fragment="header" >
+<!-- contextPath is being used in javascript for ajax calls -->
+<script th:inline="javascript"> var contextPath = /*[[@{/}]]*/ ''; </script>
+
+<input type="hidden" id="hdContextPath" value="" />
+<div class="navbar navbar-default navbar-fixed-top" role="navigation" >
+
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" >
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<!--  <a class="navbar-brand active" href="/">Arkansas Trauma System</a>-->
+		</div>
+		<div class="navbar-collapse collapse" >		
+		 
+			<div class="navbar-form navbar-right">
+			
+			 <div th:if="${session.user == null}" >
+            	<!--<div class="form-group">
+              		<input type="text"   id="txtUsername" placeholder="Username" class="form-control" />
+           		</div>
+            	<div class="form-group">
+              		<input type="password" onKeyPress="fireLoginUser(event)" id="txtPassword"  placeholder="Password" class="form-control" />
+            	</div>
+            	<button id="btnLogin" type="submit" onClick="loginUser()" class="btn btn-success">Sign in</button>-->
+            </div>
+            <div th:if="${session.user != null}">
+            	<button id="btnLogout" type="submit" onClick="logoutUser()" class="btn btn-success">Sign out</button>
+            </div>
+            
+         	</div>
+			<ul class="nav navbar-nav navbar-left">
+				<li class="active"><a th:href="@{/}">Home</a></li>				
+				<li th:if="${session.HAS_RIGHT_VIEW_PROJECTS != null &amp;&amp; session.HAS_RIGHT_VIEW_PROJECTS == true }"><a href="#">Projects</a></li>
+				<li class="dropdown" th:if="${session.HAS_RIGHT_EDIT_USER != null &amp;&amp; session.HAS_RIGHT_EDIT_USER == true }">
+					<a th:href="@{/users}" class="dropdown-toggle" data-toggle="dropdown">Users<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a th:href="@{/users}">Users List</a></li>
+						<li><a href="#">Add Users</a></li>
+					</ul>
+				</li>							
+				<li class="dropdown" th:if="${session.HAS_RIGHT_VIEW_REPORT != null &amp;&amp; session.HAS_RIGHT_VIEW_REPORT == true}">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" >Reports<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li class="dropdown-header">General Reports</li>
+						<li><a href="#">Report 1</a></li>
+						<li><a href="#">Report 2</a></li>
+						<li class="divider"></li>
+						<li class="dropdown-header">Other Reports</li>
+						<li><a href="#">Report 1</a></li>
+						<li><a href="#">Report 2</a></li>						
+					</ul>
+				</li>
+				<li th:if="${session.HAS_RIGHT_VIEW_AUDIT != null &amp;&amp; session.HAS_RIGHT_VIEW_AUDIT == true }"><a href="#">Audits</a></li>				
+				<!-- <li><a href="#"><span th:if="${session.user == null}">Forgot Password</span><span th:if="${session.user != null}" >Reset Password</span></a></li> -->				
+			</ul>
+		</div><!-- /.nav-collapse -->
+	</div>
+
+	
+</div>
+
+ 
+ 
+ 
+ </div><!-- fragment header -->
+ 
+

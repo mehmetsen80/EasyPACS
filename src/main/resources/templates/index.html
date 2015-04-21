@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html lang="eng" xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/layout">
+<head>	
+    <title>Home Page</title>   
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+ 	<meta name="viewport" content="width=device-width, initial-scale=1" />
+ 	    
+ 	<script th:src="@{js/index.js}"></script>         
+</head>
+<body>
+hello world
+
+<div layout:fragment="content">
+
+ <div class="jumbotron text-center">	
+		<h1>Easy PACS Repository</h1>
+		<p>Easiest way to store and view Dicom Files</p>		
+		<a href="#" title="Download Files" class="btn btn-primary"><i class="fa fa-download fa-x"></i>&nbsp;Download Easy PACS 0.1v</a>		
+		<a href="#" title="GitHub" class="btn btn-primary"><i class="fa fa-github-square fa-x"></i>&nbsp;Go to GitHub for Source Code</a>
+</div>
+
+		
+<div class="container">		
+<h2 th:text="#{easy.title}">Easy PACS</h2>
+<br/>
+	
+	
+	<div class="row">
+		<div class="col-sm-4">
+			<a th:href="@{/server}" class="thumbnail home-thumb">
+				<img th:src="@{img/server-128.png}" alt="Settings" title="Settings" />
+			</a>		
+			<h3>PACS Server</h3>
+			<p>Easy PACS comes with a dicom listener that receives the dicom files and make them available online by converting them into jpeg image files. Please test the server with the latest version of <a th:href="@{http://sourceforge.net/projects/dcm4che/files/dcm4che3/3.3.6/}" th:text="@{dcm4che3 tool}"></a> </p>
+			<a th:href="@{/server}" class="btn btn-danger">View</a>
+		</div>
+		<div class="col-sm-4">
+			<a href="#" class="thumbnail home-thumb">
+				<img  th:src="@{img/viewer-128.png}" alt="Dicom Viewer" title="Dicom Viewer" />
+			</a>
+			<h3>Dicom Viewer</h3>			
+			<p>Lorem ipsum dolor sit amet, consectur adipiscing elit. Nunc suscipit convallis nisl, eget rutru lectues commodo at. Pellentesque mattis justo vel augue pretium euismod. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce eu turpis eros.</p>
+			<a href="#" class="btn btn-danger">View</a>			
+		</div>
+		<div class="col-sm-4">
+		<a href="/reports" class="thumbnail home-thumb">
+				<img   th:src="@{img/report-128.png}" alt="Reports" title="Reports" />
+			</a>
+			<h3>Reports</h3>
+			<p>Lorem ipsum dolor sit amet, consectur adipiscing elit. Nunc suscipit convallis nisl, eget rutru lectues commodo at. Pellentesque mattis justo vel augue pretium euismod. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce eu turpis eros.</p>
+			<a th:href="@{/reports}" class="btn btn-danger">View</a>
+		</div>
+	</div>
+</div>
+</div>
+
+</body>
+</html>

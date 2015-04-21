@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  
+  	<meta charset="utf-8" />
+ 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+ 	<meta name="viewport" content="width=device-width, initial-scale=1" />
+  	<title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Easy PACS</title>   
+  
+      
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+ 	<script th:src="@{js/jquery-1.11.1.js}"></script>
+ 	
+ 	<!-- jquery-ui-1.11.4.custom -->
+    <link th:href="@{js/jquery-ui-1.11.4.custom/jquery-ui.css}" rel="stylesheet" />
+    <script th:src="@{js/jquery-ui-1.11.4.custom/external/jquery/jquery.js}"></script>
+	<script th:src="@{js/jquery-ui-1.11.4.custom/jquery-ui.js}"></script> 
+ 	
+ 	<!-- Include all compiled plugins (below), or include individual files as needed -->
+ 	<script th:src="@{js/bootstrap.min.js}"></script> 
+ 	
+ 	<!-- Later for login form purposes -->
+ 	<script th:src="@{js/header.js}"></script>
+ 	
+ 	<!-- vakata js tree -->
+ 	<!-- <link th:href="@{js/vakata-jstree/dist/themes/default/style.min.css}" rel="stylesheet" /> -->
+ 	<link th:href="@{js/vakata-jstree/dist/themes/proton/style.min.css}" rel="stylesheet" /> 
+ 	<script th:src="@{js/vakata-jstree/dist/jstree.min.js}"></script>
+ 	
+ 	<!-- to get the url with jquery javascript -->
+ 	<script th:src="@{js/purl.js}"></script>
+
+	<!-- Bootstrap -->
+    <link  th:href="@{css/bootstrap.min.css}" rel="stylesheet" />
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script th:src="@{https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js}"></script>
+      <script th:src="@{https://oss.maxcdn.com/respond/1.4.2/respond.min.js}"></script>
+    <![endif]-->
+    
+    <!-- font-awesome css -->
+    <link th:href="@{fonts/font-awesome-4.2.0/css/font-awesome.min.css}" rel="stylesheet"  />
+    
+    <!-- google font -->
+    <link th:href='@{http://fonts.googleapis.com/css?family=Open+Sans}' rel='stylesheet' type='text/css' />
+    <link th:href='@{http://fonts.googleapis.com/css?family=Oswald}' rel='stylesheet' type='text/css' />        
+    
+    <!-- custom css -->
+    <link rel="stylesheet"   th:href="@{css/custom.css}" />
+    
+    <!-- FANCYBOX  http://fancyapps.com/fancybox/ -->
+    <!-- Add mousewheel plugin (this is optional) -->
+	<script type="text/javascript" th:src="@{js/jquery.mousewheel-3.0.6.pack.js}"></script>	
+	<!-- Add fancyBox main JS and CSS files -->
+	<script type="text/javascript" th:src="@{js/fancybox/jquery.fancybox.js?v=2.1.5}"></script>
+	<link rel="stylesheet" type="text/css" th:href="@{js/fancybox/jquery.fancybox.css?v=2.1.5}" media="screen" />
+	<!-- Add Button helper (this is optional) -->
+	<link rel="stylesheet" type="text/css" th:href="@{js/fancybox/helpers/jquery.fancybox-buttons.css?v=1.0.5}" />
+	<script type="text/javascript" th:src="@{js/fancybox/helpers/jquery.fancybox-buttons.js?v=1.0.5}"></script>
+	<!-- Add Thumbnail helper (this is optional) -->
+	<link rel="stylesheet" type="text/css" th:href="@{js/fancybox/helpers/jquery.fancybox-thumbs.css?v=1.0.7}" />
+	<script type="text/javascript" th:src="@{js/fancybox/helpers/jquery.fancybox-thumbs.js?v=1.0.7}"></script>
+	<!-- Add Media helper (this is optional) -->
+	<script type="text/javascript" th:src="@{js/fancybox/helpers/jquery.fancybox-media.js?v=1.0.6}"></script>
+    <!-- END OF FANCYBOX -->
+    
+    
+    
+  </head>
+<body>
+	<div th:replace="fragments/header :: header"></div>	
+	<div layout:fragment="content">
+    	<!-- include here the content of the current page visited by the user -->
+  	</div>	
+	<div th:replace="fragments/footer :: footer"></div>
+ </body>
+</html>
+
+

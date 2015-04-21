@@ -41,25 +41,29 @@
 
 <p>Java platform is tricky. It uses 32 bit Java environment along with needed clib_ files to enable the image file conversions</p>
 
-<pre><code>1- Put 32 bit  [clib_jiio.dll, clib_jiio_sse2.dll, clib_jiio_util.dll](https://2kere2beseder.files.wordpress.com/2015/04/clib_files.zip) dll files under C:\Program Files (x86)\Java\jre1.8.0_20\bin
+<ol>
+<li>Put 32 bit  <a href="https://2kere2beseder.files.wordpress.com/2015/04/clib_files.zip">clib_jiio.dll, clib_jiio_sse2.dll, clib_jiio_util.dll</a> dll files under C:\Program Files (x86)\Java\jre1.8.0_20\bin</li>
+<li>Put <a href="https://2kere2beseder.files.wordpress.com/2015/04/clib_files.zip">clibwrapper_jiio.jar, jai_imageio.jar</a> jar files under  C:\Program Files (x86)\Java\jdk1.8.0_45\jre\lib\ext\</li>
+</ol>
+
+<pre><code>### Environmental Variables:
+Make sure that you Environmental Variables are setup correctly
+
 </code></pre>
 
-<pre><code>2 - Put [clibwrapper_jiio.jar, jai_imageio.jar](https://2kere2beseder.files.wordpress.com/2015/04/clib_files.zip) jar files under  C:\Program Files (x86)\Java\jdk1.8.0_45\jre\lib\ext\
-</code></pre>
-
-<h3>
-<a id="environmental-variables" class="anchor" href="#environmental-variables" aria-hidden="true"><span class="octicon octicon-link"></span></a>Environmental Variables:</h3>
-
-<p>Make sure that you Environmental Variables are setup correctly</p>
-
-<pre><code>User Defined
+<p>User Defined
 Variable Name:  JAVA_HOME
-Variable Value: C:\Program Files (x86)\Java\jdk1.8.0_20
+Variable Value: C:\Program Files (x86)\Java\jdk1.8.0_20</p>
+
+<pre><code>
 </code></pre>
 
-<pre><code>System variables
+<p>System variables
 Variable Name:  CLASSPATH
-Variable Value: %JAVA_HOME%\jre\bin:
+Variable Value: %JAVA_HOME%\jre\bin:</p>
+
+<pre><code>
+
 </code></pre>
 
       <footer class="site-footer">

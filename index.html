@@ -25,15 +25,42 @@
 <p>Easy PACS allows you to setup a PACS Server which you can view your dicom images online. It uses DCM4CHE tools with the latest frameworks such as Spring Boot. No need to setup a server anymore, the jar file is the file you only need and it contains the web-server itself. Thanks to Spring Boot, it enables the jar file to become both a listener (server) and web at the same time. </p>
 
 <h3>
-<a id="download-easy-pacs-0-0-1-snapshotjar" class="anchor" href="#download-easy-pacs-0-0-1-snapshotjar" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="https://2kere2beseder.files.wordpress.com/2015/04/easy-pacs-0-0-1-snapshot.zip">Download easy-pacs-0-0-1-snapshot.jar</a>
-</h3>
+<a id="download" class="anchor" href="#download" aria-hidden="true"><span class="octicon octicon-link"></span></a>Download</h3>
 
-<p>The server accepts all the dicom files and produces all the required database entities. Dicom entity structure is known as:</p>
+<p><a href="https://2kere2beseder.files.wordpress.com/2015/04/easy-pacs-0-0-1-snapshot.zip">Download easy-pacs-0-0-1-snapshot.jar</a></p>
+
+<h3>
+<a id="object-model" class="anchor" href="#object-model" aria-hidden="true"><span class="octicon octicon-link"></span></a>Object Model</h3>
+
+<p>The server accepts all the dicom files and produces all the required database entities. The dicom entities are generated with JPA related entities such as *Patient *Study *Series *Equipment *Instance.  </p>
+
+<h3>
+<a id="database-is-mysql" class="anchor" href="#database-is-mysql" aria-hidden="true"><span class="octicon octicon-link"></span></a>Database is MYSQL</h3>
+
+<p>Please run the below sql queries to generate your tables</p>
+
+<pre><code>CREATE TABLE tbl_patient (pkTBLPatientID BIGINT AUTO_INCREMENT NOT NULL, createdDate DATETIME, modifiedDate DATETIME, patientAge VARCHAR(5), patientBirthday DATE, patientID VARCHAR(50), patientName VARCHAR(50), patientSex VARCHAR(2), PRIMARY KEY (pkTBLPatientID))
+CREATE TABLE tbl_study (pkTBLStudyID BIGINT AUTO_INCREMENT NOT NULL, accessionNumber VARCHAR(20), additionalPatientHistory VARCHAR(100), admittingDiagnosesDescription VARCHAR(50), createdDate DATETIME, modifiedDate DATETIME, referringPhysicianName VARCHAR(50), studyDateTime DATETIME, studyDescription VARCHAR(200), studyID VARCHAR(50), studyInstanceUID VARCHAR(100), studyPriorityID VARCHAR(20), studyStatusID VARCHAR(20), pkTBLPatientID BIGINT, PRIMARY KEY (pkTBLStudyID))
+CREATE TABLE tbl_series (pkTBLSeriesID BIGINT AUTO_INCREMENT NOT NULL, bodyPartExamined VARCHAR(20), createdDate DATETIME, laterality VARCHAR(50), modifiedDate DATETIME, operatorsName VARCHAR(30), patientPosition VARCHAR(10), protocolName VARCHAR(50), seriesDateTime DATETIME, seriesDescription VARCHAR(100), seriesInstanceUID VARCHAR(100), seriesNumber INTEGER, pkTBLStudyID BIGINT, PRIMARY KEY (pkTBLSeriesID))
+CREATE TABLE tbl_equipment (pkTBLEquipmentID BIGINT AUTO_INCREMENT NOT NULL, conversionType VARCHAR(30), createdDate DATETIME, deviceSerialNumber VARCHAR(50), institutionAddress VARCHAR(50), institutionName VARCHAR(50), institutionalDepartmentName VARCHAR(50), manufacturer VARCHAR(50), manufacturerModelName VARCHAR(50), modality VARCHAR(30), modifiedDate DATETIME, softwareVersion VARCHAR(50), stationName VARCHAR(30), pkTBLSeriesID BIGINT, PRIMARY KEY (pkTBLEquipmentID))
+CREATE TABLE tbl_instance (pkTBLInstanceID BIGINT AUTO_INCREMENT NOT NULL, acquisitionDateTime DATETIME, contentDateTime DATETIME, createdDate DATETIME, exposureTime INTEGER, imageOrientation VARCHAR(20), imagePosition VARCHAR(50), imageType VARCHAR(20), instanceNumber INTEGER, kvp VARCHAR(20), mediaStorageSopInstanceUID VARCHAR(100), modifiedDate DATETIME, patientOrientation VARCHAR(20), pixelSpacing FLOAT, sliceLocation FLOAT, sliceThickness FLOAT, sopClassUID VARCHAR(100), sopInstanceUID VARCHAR(100), transferSyntaxUID VARCHAR(100), windowCenter VARCHAR(20), windowWidth VARCHAR(20), xrayTubeCurrent INTEGER, pkTBLSeriesID BIGINT, PRIMARY KEY (pkTBLInstanceID))
+ALTER TABLE tbl_study ADD CONSTRAINT FK_tbl_study_pkTBLPatientID FOREIGN KEY (pkTBLPatientID) REFERENCES tbl_patient (pkTBLPatientID)
+ALTER TABLE tbl_series ADD CONSTRAINT FK_tbl_series_pkTBLStudyID FOREIGN KEY (pkTBLStudyID) REFERENCES tbl_study (pkTBLStudyID)
+ALTER TABLE tbl_equipment ADD CONSTRAINT FK_tbl_equipment_pkTBLSeriesID FOREIGN KEY (pkTBLSeriesID) REFERENCES tbl_series (pkTBLSeriesID)
+ALTER TABLE tbl_instance ADD CONSTRAINT FK_tbl_instance_pkTBLSeriesID FOREIGN KEY (pkTBLSeriesID) REFERENCES tbl_series (pkTBLSeriesID)
+</code></pre>
+
+<h3>
+<a id="dicom-logic" class="anchor" href="#dicom-logic" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dicom Logic</h3>
+
+<p>Dicom entity structure is known as:</p>
 
 <pre><code>Patient --&gt; NxStudy --&gt; MxSeries --&gt; ZxInstances 
+Series --&gt; Equipment
 1 Patient can contain N of Studies, 
 1 Study can contain M of Series
 1 Series can contain Z of Instances
+1 Series can contain 1 Equipment
 </code></pre>
 
 <h3>
@@ -65,6 +92,17 @@ Variable Value: C:\Program Files (x86)\Java\jdk1.8.0_20
 Variable Name:  CLASSPATH
 Variable Value: %JAVA_HOME%\jre\bin:
 </code></pre>
+
+<h2>
+<a id="setup-your-windows-wrapper-tanuki-wrapper" class="anchor" href="#setup-your-windows-wrapper-tanuki-wrapper" aria-hidden="true"><span class="octicon octicon-link"></span></a>Setup your Windows Wrapper (Tanuki Wrapper)</h2>
+
+<ol>
+<li><a href="https://2kere2beseder.files.wordpress.com/2015/04/easy-pacs-0-0-1-snapshot.zip">Download easy-pacs-0-0-1-snapshot.jar</a></li>
+<li>Setup your JAVA Environment as explained above</li>
+<li>Generate your tables as explained above</li>
+<li>
+</li>
+</ol>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/mehmetsen80/EasyPACS">Easy PACS</a> is maintained by <a href="https://github.com/mehmetsen80">mehmetsen80</a>.</span>

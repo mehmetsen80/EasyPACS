@@ -25,61 +25,42 @@
 <p>Easy PACS allows you to setup a PACS Server which you can view your dicom images online. It uses DCM4CHE tools with the latest frameworks such as Spring Boot. No need to setup a server anymore, the jar file is the file you only need and it contains the web-server itself. Thanks to Spring Boot, it enables the jar file to become both a listener (server) and web at the same time. </p>
 
 <h3>
-<a id="download-easypacsv01-jar-file-from-here" class="anchor" href="#download-easypacsv01-jar-file-from-here" aria-hidden="true"><span class="octicon octicon-link"></span></a>Download EasyPACSv0.1 jar file from here</h3>
+<a id="download-easypacs-v01-jar-file-from-here" class="anchor" href="#download-easypacs-v01-jar-file-from-here" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="https://2kere2beseder.files.wordpress.com/2015/04/easy-pacs-0-0-1-snapshot.zip">Download EasyPACS v0.1 jar file from here</a>
+</h3>
 
-<p><a href="https://2kere2beseder.files.wordpress.com/2015/04/easy-pacs-0-0-1-snapshot.zip">Download EasyPACS v0.1</a></p>
+<p>The server accepts all the dicom files and produces all the required database entities. Dicom entity structure is known as:</p>
 
-<p>The server accepts all the dicom files and produces all the required database entities. Dicom entity structure is known as:
-<code>Patient --&gt; NxStudy --&gt; MxSeries --&gt; ZxInstances</code>
-<code>1 Patient can contain N of Studies,</code>
-<code>1 Study can contain M of Series</code>
-<code>1 Series can contain Z of Instances</code></p>
+<pre><code>Patient --&gt; NxStudy --&gt; MxSeries --&gt; ZxInstances 
+1 Patient can contain N of Studies, 
+1 Study can contain M of Series
+1 Series can contain Z of Instances
+</code></pre>
 
 <h3>
 <a id="how-to-setup-java-environment" class="anchor" href="#how-to-setup-java-environment" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to Setup Java Environment</h3>
 
-<p>Java platform is tricky. It uses 32 bit Java environment along with needed clib_ files to enable the image file conversions
-1- Put 32 bit  <a href="https://2kere2beseder.files.wordpress.com/2015/04/clib_files.zip">clib_jiio.dll, clib_jiio_sse2.dll, clib_jiio_util.dll</a> dll files under C:\Program Files (x86)\Java\jre1.8.0_20\bin
-2 - Put <a href="https://2kere2beseder.files.wordpress.com/2015/04/clib_files.zip">clibwrapper_jiio.jar, jai_imageio.jar</a> jar files under  C:\Program Files (x86)\Java\jdk1.8.0_45\jre\lib\ext\</p>
+<p>Java platform is tricky. It uses 32 bit Java environment along with needed clib_ files to enable the image file conversions</p>
+
+<pre><code>1- Put 32 bit  [clib_jiio.dll, clib_jiio_sse2.dll, clib_jiio_util.dll](https://2kere2beseder.files.wordpress.com/2015/04/clib_files.zip) dll files under C:\Program Files (x86)\Java\jre1.8.0_20\bin
+</code></pre>
+
+<pre><code>2 - Put [clibwrapper_jiio.jar, jai_imageio.jar](https://2kere2beseder.files.wordpress.com/2015/04/clib_files.zip) jar files under  C:\Program Files (x86)\Java\jdk1.8.0_45\jre\lib\ext\
+</code></pre>
 
 <h3>
 <a id="environmental-variables" class="anchor" href="#environmental-variables" aria-hidden="true"><span class="octicon octicon-link"></span></a>Environmental Variables:</h3>
 
-<p>Make sure that you Environmental Variables are setup correctly
-<code>User Defined</code>
-<code>Variable Name:  JAVA_HOME</code>
-<code>Variable Value: C:\Program Files (x86)\Java\jdk1.8.0_20</code></p>
+<p>Make sure that you Environmental Variables are setup correctly</p>
 
-<p><code>System variables</code>
-<code>Variable Name:  CLASSPATH</code>
-<code>Variable Value: %JAVA_HOME%\jre\bin:</code></p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
+<pre><code>User Defined
+Variable Name:  JAVA_HOME
+Variable Value: C:\Program Files (x86)\Java\jdk1.8.0_20
 </code></pre>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>
-<a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a id="rather-drive-stick" class="anchor" href="#rather-drive-stick" aria-hidden="true"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="https://help.github.com/pages">https://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<pre><code>System variables
+Variable Name:  CLASSPATH
+Variable Value: %JAVA_HOME%\jre\bin:
+</code></pre>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/mehmetsen80/EasyPACS">Easy PACS</a> is maintained by <a href="https://github.com/mehmetsen80">mehmetsen80</a>.</span>

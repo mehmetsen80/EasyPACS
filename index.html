@@ -22,7 +22,7 @@
       <h3>
 <a id="welcome-to-easypacs" class="anchor" href="#welcome-to-easypacs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome to EasyPACS.</h3>
 
-<p>Easy PACS allows you to setup a PACS Server which you can view your dicom images online. It uses DCM4CHE tools with the latest frameworks such as Spring Boot. No need to setup a server anymore, the jar file is the file you only need and it contains the web-server itself. Thanks to Spring Boot, it enables the jar file to become both a listener (server) and web at the same time. </p>
+<p>Easy PACS allows you to setup a PACS Server which you can view your dicom images online. It uses DCM4CHE tools with the latest frameworks such as Spring Boot and Gradle Build Environment. No need to setup a server anymore, the jar file is the file you only need and it contains the web-server itself. Thanks to Spring Boot, it enables the jar file to become both a listener (server) and web at the same time. </p>
 
 <h3>
 <a id="download" class="anchor" href="#download" aria-hidden="true"><span class="octicon octicon-link"></span></a>Download</h3>
@@ -32,7 +32,7 @@
 <h3>
 <a id="object-model" class="anchor" href="#object-model" aria-hidden="true"><span class="octicon octicon-link"></span></a>Object Model</h3>
 
-<p>The server accepts all the dicom files and produces all the required database entities. The dicom entities are generated with JPA related entities such as *Patient *Study *Series *Equipment *Instance.  </p>
+<p>The server accepts all the dicom files and produces all the required database entities. The dicom entities are generated with JPA related entities such as <em><strong>Patient Study Series Equipment Instance</strong></em>.  </p>
 
 <h3>
 <a id="database-is-mysql" class="anchor" href="#database-is-mysql" aria-hidden="true"><span class="octicon octicon-link"></span></a>Database is MYSQL</h3>
@@ -51,7 +51,7 @@ ALTER TABLE tbl_instance ADD CONSTRAINT FK_tbl_instance_pkTBLSeriesID FOREIGN KE
 </code></pre>
 
 <h3>
-<a id="dicom-logic" class="anchor" href="#dicom-logic" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dicom Logic</h3>
+<a id="easy-pacs-dicom-logic" class="anchor" href="#easy-pacs-dicom-logic" aria-hidden="true"><span class="octicon octicon-link"></span></a>Easy PACS Dicom Logic</h3>
 
 <p>Dicom entity structure is known as:</p>
 
@@ -71,7 +71,7 @@ Series --&gt; Equipment
 <h3>
 <a id="how-to-setup-java-environment" class="anchor" href="#how-to-setup-java-environment" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to Setup Java Environment</h3>
 
-<p>Java platform is tricky. It uses 32 bit Java environment along with needed clib_ files to enable the image file conversions</p>
+<p>Java platform is tricky. It uses 32 bit Java environment along with needed <em>**clib</em>**_ files to enable the image file conversions</p>
 
 <ol>
 <li>Put 32 bit  <a href="https://2kere2beseder.files.wordpress.com/2015/04/clib_files.zip">clib_jiio.dll, clib_jiio_sse2.dll, clib_jiio_util.dll</a> dll files under C:\Program Files (x86)\Java\jre1.8.0_20\bin</li>

@@ -25,15 +25,9 @@
 <p>Easy PACS allows you to setup a PACS Server which you can view your dicom images online. It uses DCM4CHE tools with the latest frameworks such as Spring Boot and Gradle Build Environment. No need to setup a server anymore, the jar file is the file you only need and it contains the web-server itself. Thanks to Spring Boot, it enables the jar file to become both a listener (server) and web at the same time. </p>
 
 <h3>
-<a id="download" class="anchor" href="#download" aria-hidden="true"><span class="octicon octicon-link"></span></a>Download</h3>
-
-<p>Download <a href="https://s3-us-west-2.amazonaws.com/easypacs/easy.pacs-0.0.1-SNAPSHOT.jar">easy-pacs-0-0-1-snapshot.jar</a>
-You can run your jar file with any 32 bit support wrapper. Your EasyPACS server will listen the ports 104, 1111, 2222, 3333 for your incoming dicom files. You can enter your dicom server via <strong>http://localhost:8085/</strong>  </p>
-
-<h3>
 <a id="object-model" class="anchor" href="#object-model" aria-hidden="true"><span class="octicon octicon-link"></span></a>Object Model</h3>
 
-<p>The server accepts all the dicom files and produces all the required database entities. The dicom entities are generated with JPA related entities such as <em><strong>Patient, Study, Series, Equipment and Instance</strong></em>.  </p>
+<p>The server accepts all the dicom files and generates all the required dicom entities that is being populated to database. The dicom entities are  <em><strong>Patient, Study, Series, Equipment and Instance</strong></em>.  </p>
 
 <h3>
 <a id="database-is-mysql" class="anchor" href="#database-is-mysql" aria-hidden="true"><span class="octicon octicon-link"></span></a>Database is MYSQL</h3>
@@ -53,7 +47,7 @@ ALTER TABLE tbl_instance ADD CONSTRAINT FK_tbl_instance_pkTBLSeriesID FOREIGN KE
 </code></pre>
 
 <h3>
-<a id="easy-pacs-dicom-logic" class="anchor" href="#easy-pacs-dicom-logic" aria-hidden="true"><span class="octicon octicon-link"></span></a>Easy PACS Dicom Logic</h3>
+<a id="dicom-logic" class="anchor" href="#dicom-logic" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dicom Logic</h3>
 
 <p>Dicom entity structure is known as:</p>
 
@@ -83,7 +77,7 @@ Series --&gt; Equipment
 <h3>
 <a id="environmental-variables" class="anchor" href="#environmental-variables" aria-hidden="true"><span class="octicon octicon-link"></span></a>Environmental Variables:</h3>
 
-<p>Make sure that your Environmental Variables are setup correctly</p>
+<p>Make sure that your Java Environmental Variables are setup correctly</p>
 
 <pre><code>User Defined
 Variable Name:  JAVA_HOME
@@ -95,43 +89,49 @@ Variable Name:  CLASSPATH
 Variable Value: %JAVA_HOME%\jre\bin
 </code></pre>
 
-<h2>
-<a id="lets-run-our-jar-file" class="anchor" href="#lets-run-our-jar-file" aria-hidden="true"><span class="octicon octicon-link"></span></a>Let's run our jar file</h2>
+<h3>
+<a id="lets-download--run-our-jar-file" class="anchor" href="#lets-download--run-our-jar-file" aria-hidden="true"><span class="octicon octicon-link"></span></a>Let's Download &amp; run our jar file!</h3>
 
 <ul>
-<li>First download <a href="https://s3-us-west-2.amazonaws.com/easypacs/application.properties">application.properties</a>  file and update your MYSQL connection string username, password and ip address </li>
+<li>First download <a href="https://s3-us-west-2.amazonaws.com/easypacs/EasyPACS.zip">EasyPACS.zip</a> file. It contains only 2 files; application.properties and easy.pacs-0.0.1-SNAPSHOT.jar files </li>
 </ul>
+
+<h4>
+<a id="in-applicationproperties-update-your-mysql-connection-string-username-password-and-url-address-please-replace-localhost-with-your-ip-address-if-needed" class="anchor" href="#in-applicationproperties-update-your-mysql-connection-string-username-password-and-url-address-please-replace-localhost-with-your-ip-address-if-needed" aria-hidden="true"><span class="octicon octicon-link"></span></a>In application.properties update your MYSQL connection string <strong>username</strong>, <strong>password</strong> and <strong>url</strong> address. Please replace <strong>localhost</strong> with your <strong>ip address</strong> if needed</h4>
 
 <pre><code>datasource.primary.url=jdbc:mysql://localhost:3306/dbdicom
 datasource.primary.username=[username]
 datasource.primary.password=[password]
 </code></pre>
 
-<p>change pacs port number if needed (make sure port 104 is not being used) Your dicom PACS server will listen this port</p>
+<h4>
+<a id="change-pacs-port-number-if-needed-make-sure-port-104-is-not-being-used-your-dicom-pacs-server-will-listen-this-port" class="anchor" href="#change-pacs-port-number-if-needed-make-sure-port-104-is-not-being-used-your-dicom-pacs-server-will-listen-this-port" aria-hidden="true"><span class="octicon octicon-link"></span></a>Change PACS port number if needed (make sure port 104 is not being used) Your dicom PACS server will listen this port</h4>
 
 <pre><code>pacs.ports = 104
 </code></pre>
 
-<p>You can also update your ae title, here we put <strong>'*'</strong> that refers to any name of ae title</p>
+<h4>
+<a id="you-can-also-update-your-ae-title-here-we-put--that-refers-to-any-name-of-ae-title" class="anchor" href="#you-can-also-update-your-ae-title-here-we-put--that-refers-to-any-name-of-ae-title" aria-hidden="true"><span class="octicon octicon-link"></span></a>You can also update your ae title. Here we put <strong>'*'</strong> that refers to any name of ae title</h4>
 
 <pre><code>pacs.aetitle = *
 </code></pre>
 
-<p>Likewise, you can change the dicom and image storage paths if needed</p>
+<h4>
+<a id="likewise-you-can-change-the-dicom-and-image-storage-paths-if-needed" class="anchor" href="#likewise-you-can-change-the-dicom-and-image-storage-paths-if-needed" aria-hidden="true"><span class="octicon octicon-link"></span></a>Likewise, you can change the dicom and image storage paths if needed</h4>
 
 <pre><code>pacs.storage.dcm = ./tmp/dcm
 pacs.storage.image = ./tmp/img
 </code></pre>
 
-<p>You can also update your web server's port. You will access your server from <em><strong>http://localhost:8085</strong></em></p>
+<h4>
+<a id="you-can-also-update-your-web-servers-port-you-will-access-your-server-from-httplocalhost8085" class="anchor" href="#you-can-also-update-your-web-servers-port-you-will-access-your-server-from-httplocalhost8085" aria-hidden="true"><span class="octicon octicon-link"></span></a>You can also update your web server's port. You will access your server from <em><strong>http://localhost:8085</strong></em>
+</h4>
 
 <pre><code>server.port=8085 
 </code></pre>
 
-<ul>
-<li><p>Now, download the latest version of <a href="https://s3-us-west-2.amazonaws.com/easypacs/easy.pacs-0.0.1-SNAPSHOT.jar">easy.pacs-[version]-SNAPSHOT.jar</a></p></li>
-<li><p>We are finished our settings, we can run now from the command line!</p></li>
-</ul>
+<h3>
+<a id="now-we-are-finished-with-our-simple-settings-we-can-run-now-from-the-command-line" class="anchor" href="#now-we-are-finished-with-our-simple-settings-we-can-run-now-from-the-command-line" aria-hidden="true"><span class="octicon octicon-link"></span></a>Now, we are finished with our simple settings, we can run now from the command line!</h3>
 
 <pre><code># java -jar easy.pacs-0.0.1-SNAPSHOT.jar
 </code></pre>

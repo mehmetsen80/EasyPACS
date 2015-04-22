@@ -40,15 +40,16 @@ You can run your jar file with any 32 bit support wrapper. Your EasyPACS server 
 
 <p>Please run the below sql queries to generate your tables</p>
 
-<pre><code>CREATE TABLE tbl_patient (pkTBLPatientID BIGINT AUTO_INCREMENT NOT NULL, createdDate DATETIME, modifiedDate DATETIME, patientAge VARCHAR(5), patientBirthday DATE, patientID VARCHAR(50), patientName VARCHAR(50), patientSex VARCHAR(2), PRIMARY KEY (pkTBLPatientID))
-CREATE TABLE tbl_study (pkTBLStudyID BIGINT AUTO_INCREMENT NOT NULL, accessionNumber VARCHAR(20), additionalPatientHistory VARCHAR(100), admittingDiagnosesDescription VARCHAR(50), createdDate DATETIME, modifiedDate DATETIME, referringPhysicianName VARCHAR(50), studyDateTime DATETIME, studyDescription VARCHAR(200), studyID VARCHAR(50), studyInstanceUID VARCHAR(100), studyPriorityID VARCHAR(20), studyStatusID VARCHAR(20), pkTBLPatientID BIGINT, PRIMARY KEY (pkTBLStudyID))
-CREATE TABLE tbl_series (pkTBLSeriesID BIGINT AUTO_INCREMENT NOT NULL, bodyPartExamined VARCHAR(20), createdDate DATETIME, laterality VARCHAR(50), modifiedDate DATETIME, operatorsName VARCHAR(30), patientPosition VARCHAR(10), protocolName VARCHAR(50), seriesDateTime DATETIME, seriesDescription VARCHAR(100), seriesInstanceUID VARCHAR(100), seriesNumber INTEGER, pkTBLStudyID BIGINT, PRIMARY KEY (pkTBLSeriesID))
-CREATE TABLE tbl_equipment (pkTBLEquipmentID BIGINT AUTO_INCREMENT NOT NULL, conversionType VARCHAR(30), createdDate DATETIME, deviceSerialNumber VARCHAR(50), institutionAddress VARCHAR(50), institutionName VARCHAR(50), institutionalDepartmentName VARCHAR(50), manufacturer VARCHAR(50), manufacturerModelName VARCHAR(50), modality VARCHAR(30), modifiedDate DATETIME, softwareVersion VARCHAR(50), stationName VARCHAR(30), pkTBLSeriesID BIGINT, PRIMARY KEY (pkTBLEquipmentID))
-CREATE TABLE tbl_instance (pkTBLInstanceID BIGINT AUTO_INCREMENT NOT NULL, acquisitionDateTime DATETIME, contentDateTime DATETIME, createdDate DATETIME, exposureTime INTEGER, imageOrientation VARCHAR(20), imagePosition VARCHAR(50), imageType VARCHAR(20), instanceNumber INTEGER, kvp VARCHAR(20), mediaStorageSopInstanceUID VARCHAR(100), modifiedDate DATETIME, patientOrientation VARCHAR(20), pixelSpacing FLOAT, sliceLocation FLOAT, sliceThickness FLOAT, sopClassUID VARCHAR(100), sopInstanceUID VARCHAR(100), transferSyntaxUID VARCHAR(100), windowCenter VARCHAR(20), windowWidth VARCHAR(20), xrayTubeCurrent INTEGER, pkTBLSeriesID BIGINT, PRIMARY KEY (pkTBLInstanceID))
+<pre><code>CREATE TABLE tbl_patient (pkTBLPatientID BIGINT AUTO_INCREMENT NOT NULL, createdDate DATETIME, modifiedDate DATETIME, patientAge VARCHAR(10), patientBirthday DATE, patientID VARCHAR(100), patientName VARCHAR(100), patientSex VARCHAR(10), PRIMARY KEY (pkTBLPatientID))
+CREATE TABLE tbl_study (pkTBLStudyID BIGINT AUTO_INCREMENT NOT NULL, accessionNumber VARCHAR(30), additionalPatientHistory VARCHAR(300), admittingDiagnosesDescription VARCHAR(200), createdDate DATETIME, modifiedDate DATETIME, referringPhysicianName VARCHAR(100), studyDateTime DATETIME, studyDescription VARCHAR(300), studyID VARCHAR(50), studyInstanceUID VARCHAR(100), studyPriorityID VARCHAR(40), studyStatusID VARCHAR(40), pkTBLPatientID BIGINT, PRIMARY KEY (pkTBLStudyID))
+CREATE TABLE tbl_series (pkTBLSeriesID BIGINT AUTO_INCREMENT NOT NULL, bodyPartExamined VARCHAR(40), createdDate DATETIME, laterality VARCHAR(100), modifiedDate DATETIME, operatorsName VARCHAR(50), patientPosition VARCHAR(30), protocolName VARCHAR(100), seriesDateTime DATETIME, seriesDescription VARCHAR(100), seriesInstanceUID VARCHAR(100), seriesNumber INTEGER, pkTBLStudyID BIGINT, PRIMARY KEY (pkTBLSeriesID))
+CREATE TABLE tbl_equipment (pkTBLEquipmentID BIGINT AUTO_INCREMENT NOT NULL, conversionType VARCHAR(50), createdDate DATETIME, deviceSerialNumber VARCHAR(100), institutionAddress VARCHAR(150), institutionName VARCHAR(100), institutionalDepartmentName VARCHAR(50), manufacturer VARCHAR(100), manufacturerModelName VARCHAR(100), modality VARCHAR(50), modifiedDate DATETIME, softwareVersion VARCHAR(100), stationName VARCHAR(60), pkTBLSeriesID BIGINT, PRIMARY KEY (pkTBLEquipmentID))
+CREATE TABLE tbl_instance (pkTBLInstanceID BIGINT AUTO_INCREMENT NOT NULL, acquisitionDateTime DATETIME, contentDateTime DATETIME, createdDate DATETIME, exposureTime INTEGER, imageOrientation VARCHAR(40), imagePosition VARCHAR(80), imageType VARCHAR(40), instanceNumber INTEGER, kvp VARCHAR(40), mediaStorageSopInstanceUID VARCHAR(100), modifiedDate DATETIME, patientOrientation VARCHAR(40), pixelSpacing FLOAT, sliceLocation FLOAT, sliceThickness FLOAT, sopClassUID VARCHAR(100), sopInstanceUID VARCHAR(100), transferSyntaxUID VARCHAR(100), windowCenter VARCHAR(40), windowWidth VARCHAR(40), xrayTubeCurrent INTEGER, pkTBLSeriesID BIGINT, PRIMARY KEY (pkTBLInstanceID))
 ALTER TABLE tbl_study ADD CONSTRAINT FK_tbl_study_pkTBLPatientID FOREIGN KEY (pkTBLPatientID) REFERENCES tbl_patient (pkTBLPatientID)
 ALTER TABLE tbl_series ADD CONSTRAINT FK_tbl_series_pkTBLStudyID FOREIGN KEY (pkTBLStudyID) REFERENCES tbl_study (pkTBLStudyID)
 ALTER TABLE tbl_equipment ADD CONSTRAINT FK_tbl_equipment_pkTBLSeriesID FOREIGN KEY (pkTBLSeriesID) REFERENCES tbl_series (pkTBLSeriesID)
 ALTER TABLE tbl_instance ADD CONSTRAINT FK_tbl_instance_pkTBLSeriesID FOREIGN KEY (pkTBLSeriesID) REFERENCES tbl_series (pkTBLSeriesID)
+
 </code></pre>
 
 <h3>
@@ -95,43 +96,50 @@ Variable Value: %JAVA_HOME%\jre\bin
 </code></pre>
 
 <h2>
-<a id="easy-pacs-as-a-windows-service" class="anchor" href="#easy-pacs-as-a-windows-service" aria-hidden="true"><span class="octicon octicon-link"></span></a>Easy PACS as a Windows Service</h2>
-
-<p>We use Tanuki Windows Wrapper to run Easy PACS as a server. Please follow these steps carefully</p>
+<a id="lets-run-our-jar-file" class="anchor" href="#lets-run-our-jar-file" aria-hidden="true"><span class="octicon octicon-link"></span></a>Let's run our jar file</h2>
 
 <ul>
-<li>Setup your JAVA Environment and MYSQL tables as explained above</li>
-<li>Download  and unzip it under C: drive  i.e: <em><strong>C:\EasyPACSService</strong></em>
-</li>
-<li>You will see the following EasyPACS Service Folder Structure</li>
+<li>First download <a href="https://s3-us-west-2.amazonaws.com/easypacs/application.properties">application.properties</a>  file and update your MYSQL connection string username, password and ip address </li>
 </ul>
 
-<p><img src="https://2kere2beseder.files.wordpress.com/2015/04/monitor1.jpg" alt="EasyPACS Service Folder Structure"></p>
+<pre><code>datasource.primary.url=jdbc:mysql://localhost:3306/dbdicom
+datasource.primary.username=[username]
+datasource.primary.password=[password]
+</code></pre>
 
-<ul>
-<li>Go to conf/wrapper.conf and update your java path
-<img src="https://2kere2beseder.files.wordpress.com/2015/04/wrapper_java_command.jpg" alt="Wrapper Java Path">
-</li>
-<li>Again in conf/wrapper.conf update your jar names along with version number. Do not touch the wrapper.conf if it is the same 1st version like below </li>
-</ul>
+<p>change pacs port number if needed (make sure port 104 is not being used) Your dicom PACS server will listen this port</p>
 
-<pre><code>wrapper.app.parameter.1=easy.pacs-0.0.1-SNAPSHOT.jar
-wrapper.console.title=EasyPACS_001
-wrapper.ntservice.name=EasyPACS_001
-wrapper.ntservice.displayname=EasyPACS_001
-wrapper.ntservice.description=EasyPACS_001
+<pre><code>pacs.ports = 104
+</code></pre>
+
+<p>You can also update your ae title, here we put <strong>'*'</strong> that refers to any name of ae title</p>
+
+<pre><code>pacs.aetitle = *
+</code></pre>
+
+<p>Likewise, you can change the dicom and image storage paths if needed</p>
+
+<pre><code>pacs.storage.dcm = ./tmp/dcm
+pacs.storage.image = ./tmp/img
+</code></pre>
+
+<p>You can also update your web server's port. You will access your server from <em><strong>http://localhost:8085</strong></em></p>
+
+<pre><code>server.port=8085 
 </code></pre>
 
 <ul>
-<li>Go to bin folder, make sure your jar destination is correct by editing run.bat file
-<img src="https://2kere2beseder.files.wordpress.com/2015/04/binfolder1.jpg" alt="configure destination jar file">
-</li>
-<li>In bin folder, right click on install.bat file and run it as Administrator
-<img src="https://2kere2beseder.files.wordpress.com/2015/04/runasadministrator.jpg" alt="Run as Administrator">
-</li>
-<li>Go to your Windows Services and start your EasyPACS_001 Service
-<img src="https://2kere2beseder.files.wordpress.com/2015/04/asservice.jpg" alt="Easy PACS as a service">
-</li>
+<li><p>Now, download the latest version of <a href="https://s3-us-west-2.amazonaws.com/easypacs/easy.pacs-0.0.1-SNAPSHOT.jar">easy.pacs-[version]-SNAPSHOT.jar</a></p></li>
+<li><p>We are finished our settings, we can run now from the command line!</p></li>
+</ul>
+
+<pre><code># java -jar easy.pacs-0.0.1-SNAPSHOT.jar
+</code></pre>
+
+<p>THAT IS IT!</p>
+
+<ul>
+<li>Go now to  <em><strong>http://localhost:8085</strong></em>  You will see such a screen:</li>
 </ul>
 
       <footer class="site-footer">

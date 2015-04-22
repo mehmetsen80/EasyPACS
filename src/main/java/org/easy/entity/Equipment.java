@@ -26,34 +26,34 @@ public class Equipment implements Serializable {
 	@Column(name="pkTBLEquipmentID")
 	private Long pkTBLEquipmentID;
 	
-	@Column(name="modality", length=30)
+	@Column(name="modality", length=50)
 	private String modality;
 	
-	@Column(name="conversionType", length=30)
+	@Column(name="conversionType", length=50)
 	private String conversionType;
 	
-	@Column(name="stationName", length=30)
+	@Column(name="stationName", length=60)
 	private String stationName;
 	
-	@Column(name="institutionName", length=50)
+	@Column(name="institutionName", length=100)
 	private String institutionName;
 	
-	@Column(name="institutionAddress", length=50)
+	@Column(name="institutionAddress", length=150)
 	private String institutionAddress;
 	
 	@Column(name="institutionalDepartmentName", length=50)
 	private String institutionalDepartmentName;
 	
-	@Column(name="manufacturer", length=50)
+	@Column(name="manufacturer", length=100)
 	private String manufacturer;
 	
-	@Column(name="manufacturerModelName", length=50)
+	@Column(name="manufacturerModelName", length=100)
 	private String manufacturerModelName;
 	
-	@Column(name="softwareVersion", length=50)
+	@Column(name="softwareVersion", length=100)
 	private String softwareVersion;
 	
-	@Column(name="deviceSerialNumber", length=50)
+	@Column(name="deviceSerialNumber", length=100)
 	private String deviceSerialNumber;
 	
 	@Temporal(TemporalType.TIMESTAMP)

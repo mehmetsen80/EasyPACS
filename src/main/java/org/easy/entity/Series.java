@@ -40,19 +40,19 @@ public class Series implements Serializable {
 	@Column(name="seriesDescription", length=100)
 	private String seriesDescription;	
 		
-	@Column(name="bodyPartExamined", length=20)
+	@Column(name="bodyPartExamined", length=40)
 	private String bodyPartExamined;
 	
-	@Column(name="patientPosition", length=10)	
+	@Column(name="patientPosition", length=30)	
 	private String patientPosition;
 	
-	@Column(name="laterality", length=50)
+	@Column(name="laterality", length=100)
 	private String laterality;
 	
-	@Column(name="protocolName", length=50)
+	@Column(name="protocolName", length=100)
 	private String protocolName;
 	
-	@Column(name="operatorsName", length=30)
+	@Column(name="operatorsName", length=50)
 	private String operatorsName;
 	
 	@Temporal(TemporalType.TIMESTAMP)

@@ -6,6 +6,7 @@ import java.io.IOException;
 import junit.framework.TestCase;
 
 import org.dcm4che3.tool.dcm2jpg.Dcm2Jpg;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -21,6 +22,7 @@ public class Dcm2JpegTest extends TestCase{
 
 	private static final Logger LOG = LoggerFactory.getLogger(Dcm2JpegTest.class);
 	
+	@Ignore
 	@Test
 	public void test2Jpeg() throws IOException{
 	
@@ -39,5 +41,13 @@ public class Dcm2JpegTest extends TestCase{
 		}catch(Exception e){
 			LOG.error(e.getMessage());
 		}
+	}
+	
+	@Test
+	@Ignore
+	public void testJavaEnv(){
+		
+		LOG.info("Java Library Path: {}", System.getProperty("java.library.path"));
+		LOG.info("Java Temp Dir: {}", System.getProperty("java.io.tmpdir"));
 	}
 }

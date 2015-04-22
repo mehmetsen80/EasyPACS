@@ -44,32 +44,32 @@ public class Study implements Serializable {
 	@Column(name="studyID", length=50)
 	private String studyID;
 	
-	@Column(name="studyDescription", length=200)
+	@Column(name="studyDescription", length=300)
 	private String studyDescription;
 	
 	@Column(name="studyInstanceUID", length=100)
 	private String studyInstanceUID;
 	
-	@Column(name="accessionNumber", length=20)
+	@Column(name="accessionNumber", length=30)
 	private String accessionNumber;	
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="studyDateTime")
 	private Date studyDateTime;
 	
-	@Column(name="referringPhysicianName", length=50)
+	@Column(name="referringPhysicianName", length=100)
 	private String referringPhysicianName;
 	
-	@Column(name="additionalPatientHistory", length=100)
+	@Column(name="additionalPatientHistory", length=300)
 	private String additionalPatientHistory;
 	
-	@Column(name="admittingDiagnosesDescription", length=50)
+	@Column(name="admittingDiagnosesDescription", length=200)
 	private String admittingDiagnosesDescription;
 	
-	@Column(name="studyStatusID", length=20)
+	@Column(name="studyStatusID", length=40)
 	private String studyStatusID;
 	
-	@Column(name="studyPriorityID", length=20)
+	@Column(name="studyPriorityID", length=40)
 	private String studyPriorityID;
 	
 	@Temporal(TemporalType.TIMESTAMP)

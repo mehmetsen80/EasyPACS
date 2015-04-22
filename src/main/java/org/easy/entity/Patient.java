@@ -39,20 +39,20 @@ public class Patient implements Serializable {
 	
 	
 	
-	@Column(name="patientID", length=50)
+	@Column(name="patientID", length=100)
 	private String patientID;	
 	
-	@Column(name="patientName", length=50)
+	@Column(name="patientName", length=100)
 	private String patientName;
 	
-	@Column(name="patientSex", length=2)
+	@Column(name="patientSex", length=10)
 	private String patientSex;
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name="patientBirthday")
 	private Date patientBirthday;
 	
-	@Column(name="patientAge", length=5)
+	@Column(name="patientAge", length=10)
 	private String patientAge;
 	
 	@Temporal(TemporalType.TIMESTAMP)

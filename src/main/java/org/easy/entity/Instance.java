@@ -37,7 +37,7 @@ public class Instance implements Serializable {
 	@Column(name="instanceNumber")
 	private Integer instanceNumber;
 	
-	@Column(name="patientOrientation", length=20)
+	@Column(name="patientOrientation", length=40)
 	private String patientOrientation;
 	
 	@Column(name="mediaStorageSopInstanceUID", length=100)
@@ -50,16 +50,16 @@ public class Instance implements Serializable {
 	@Column(name="acquisitionDateTime")
 	private Date acquisitionDateTime;
 	
-	@Column(name="imageType", length=20)
+	@Column(name="imageType", length=40)
 	private String imageType;
 	
 	@Column(name="pixelSpacing")
 	private Float pixelSpacing;
 	
-	@Column(name="imageOrientation", length=20)
+	@Column(name="imageOrientation", length=40)
 	private String imageOrientation;
 	
-	@Column(name="imagePosition", length=50)
+	@Column(name="imagePosition", length=80)
 	private String imagePosition;
 	
 	@Column(name="sliceThickness")
@@ -68,10 +68,10 @@ public class Instance implements Serializable {
 	@Column(name="sliceLocation")
 	private Float sliceLocation;
 	
-	@Column(name="windowCenter", length=20)
+	@Column(name="windowCenter", length=40)
 	private String windowCenter;
 	
-	@Column(name="windowWidth", length=20)
+	@Column(name="windowWidth", length=40)
 	private String windowWidth;
 	
 	@Column(name="xrayTubeCurrent")
@@ -80,7 +80,7 @@ public class Instance implements Serializable {
 	@Column(name="exposureTime")
 	private Integer exposureTime;
 	
-	@Column(name="kvp", length=20)
+	@Column(name="kvp", length=40)
 	private String kvp;
 	
 	@Temporal(TemporalType.TIMESTAMP)

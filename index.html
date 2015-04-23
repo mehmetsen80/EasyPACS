@@ -159,6 +159,10 @@ pacs.storage.image = ./tmp/img
 
 <p>THAT IS IT!</p>
 
+<blockquote>
+<p>Make sure that your database connection string is right, otherwise it will give hibernate error!</p>
+</blockquote>
+
 <ul>
 <li>Go now to  <em><strong>http://localhost:8085</strong></em>  You will see such a screen:</li>
 </ul>
@@ -168,28 +172,33 @@ pacs.storage.image = ./tmp/img
 <h3>
 <a id="lets-send-some-dicom-files-to-the-server" class="anchor" href="#lets-send-some-dicom-files-to-the-server" aria-hidden="true"><span class="octicon octicon-link"></span></a>Let's send some dicom files to the server</h3>
 
-<p>Our server is listening any name of AE Title, port 104 on the localhost. We can now send dicom files to the server. For that please download the latest version of <a href="http://sourceforge.net/projects/dcm4che/files/dcm4che3/">dcm4che3</a> toolkit. 
+<p>Our server is listening on port 104 with any name of AE Title on the localhost. We can now send dicom files to the server. </p>
+
+<p>Please download the latest version of <a href="http://sourceforge.net/projects/dcm4che/files/dcm4che3/">dcm4che3</a> toolkit. 
 Unzip it in your disk and go to the bin directory. Use it as shown below:</p>
 
 <pre><code># storescu -c WHATEVER@localhost:104 "C:\dcmsamples\MARTIN^ZANE^"\*
 </code></pre>
 
-<p>It means you send the dicom files of <strong>MARTIN^ZANE^</strong> to the AE Title <strong>WHATEVER</strong> (it can be any name because we setup AE Title as star '<em>'), to the port *</em>104** on <strong>localhost</strong> (you can write your ip if you send remotely)
-Below is a screenshot how it used on console</p>
+<p>It means you send the dicom files of <strong>MARTIN^ZANE^</strong> to the AE Title <em><strong>WHATEVER</strong></em> (it can be any name because we setup AE Title as star "<em>" ), to the port _</em><em>104</em><em>_ on _</em><em>localhost</em>*_ (you can write your ip if you send remotely)</p>
+
+<p>Below is the screenshot that shows how it is used on console</p>
 
 <p><a href="https://2kere2beseder.files.wordpress.com/2015/04/storescu.jpg"><img src="https://2kere2beseder.files.wordpress.com/2015/04/storescu.jpg" alt="storescu command"></a></p>
 
-<ul>
-<li>This is the server page that lists the received patients. In this page, you will see the monitor messages as well that shows the incoming patient transfers. Patient MARTIN^ZANE^ has been received, the images will append per dicom request</li>
-</ul>
+<p>Our server receives the incoming dicom files and starts to create the entities. This is the server page that lists the received patients. In this page, you will see the monitor messages as well that indicates the incoming patient transfers. </p>
+
+<p>Patient MARTIN^ZANE^ has been received, the images will append per dicom request</p>
 
 <p><a href="https://2kere2beseder.files.wordpress.com/2015/04/server.jpg"><img src="https://2kere2beseder.files.wordpress.com/2015/04/server.jpg" alt="Server Page"></a></p>
 
-<ul>
-<li>This is the patient page that lists the latest study, series and images (instances). Remember that dicom files are saved on tmp\dcm and images are saved on tmp\img. The images are populated in real time based on existence of dicom files. So, as long as the the dicom files are there, the images will be shown per page load that means deleting jpeg images won't effect the system.</li>
-</ul>
+<p>And finally, this is the patient page that lists the latest study, series and images (instances). Remember that dicom files are saved on tmp\dcm and images are saved on tmp\img. The images are populated in real time based on existence of dicom files. So, as long as the the dicom files are there, the images will be shown per page load that means deleting jpeg images won't effect the system.</p>
 
 <p><a href="https://2kere2beseder.files.wordpress.com/2015/04/patient.jpg"><img src="https://2kere2beseder.files.wordpress.com/2015/04/patient.jpg" alt="Patient"></a></p>
+
+<p>You can click the dicom thumbnail image and view in bigger mode </p>
+
+<p><a href="https://2kere2beseder.files.wordpress.com/2015/04/zoom.jpg"><img src="https://2kere2beseder.files.wordpress.com/2015/04/zoom.jpg" alt="view image"></a></p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/mehmetsen80/EasyPACS">Easy PACS</a> is maintained by <a href="https://github.com/mehmetsen80">mehmetsen80</a>.</span>

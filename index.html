@@ -27,7 +27,7 @@
 <h3>
 <a id="object-model" class="anchor" href="#object-model" aria-hidden="true"><span class="octicon octicon-link"></span></a>Object Model</h3>
 
-<p>The server accepts all the dicom files and generates the its entities data that is being populated to database. The dicom entities are  <em><strong>Patient, Study, Series, Equipment and Instance</strong></em>.  They are reflected to your MYSQL database by the JPA Entity Manager by converting the entities into re-usable object models. </p>
+<p>The server accepts all the dicom files and generates its entity data that is populated to relational database. The dicom entities are  <em><strong>Patient, Study, Series, Equipment and Instance</strong></em>.  They are reflected to your MYSQL database by the JPA Entity Manager. It converts the entities into re-usable object models. </p>
 
 <h3>
 <a id="infrastructure" class="anchor" href="#infrastructure" aria-hidden="true"><span class="octicon octicon-link"></span></a>Infrastructure</h3>
@@ -35,17 +35,14 @@
 <p>Easy PACS uses several frameworks and platforms such as Spring Boot Framework, JPA/Hibernate, Thymeleaf and Gradle. The <a href="https://github.com/mehmetsen80/EasyPACS">source code</a> will inspire other developers as well in terms of using a compact platform with less code and maximum efficiency. </p>
 
 <h3>
-<a id="dicom-standards" class="anchor" href="#dicom-standards" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dicom Standards</h3>
-
-<p>A dicom file holds all patient data including images as binary format.  </p>
-
-<h3>
 <a id="why-easypacs" class="anchor" href="#why-easypacs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Why EasyPACS?</h3>
 
-<p>Plenty of PACS server in the market, you might ask why another open-source PACS server? The PACS has right now $3 billion market size and they assume it will grow over $4 billion in 2018 with different archive models such as VNA (Vendor Neutral Archive). The problem is that the vendors charge too much for the health organizations mostly based on number of images just for a standalone PACS servers. The reality is that the customer most likely need to customize the PACS according to local needs. As experienced PACS developers, we worked on several but similar PACSs and all of them needed to add different logic. In short, we provide the cheapest and most customizable product solutions ever for the health organizations. </p>
+<p>Plenty of PACS servers exist in the market, so you might ask why another open-source PACS server? The PACS has right now $3 billion market size and they assume it will grow over $4 billion in 2018 with different archive models such as VNA (Vendor Neutral Archive). </p>
+
+<p>The problem is that the vendors charge too much for the health organizations mostly based on number of images just for  standalone PACS servers. First of all, the reality is that the customer needs a cheap PACS server to minimize the cost. Secondly, they most likely need to customize the PACS as well according to local needs. As experienced PACS developers, we worked on several PACSs and all of them needed to add different local logic. In short, we provide the cheapest and most customizable PACS solutions ever for the health organizations. </p>
 
 <h3>
-<a id="dicom-standards-1" class="anchor" href="#dicom-standards-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dicom Standards</h3>
+<a id="dicom-standards" class="anchor" href="#dicom-standards" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dicom Standards</h3>
 
 <p>The standards of dicoms are specified by <a href="http://www.nema.org/">nema.org</a> an association for the need of medical standards. PACS is known Picture Archiving and Communication System and several PACSs are in the market and many look very similar. We  examined the standards of dicom files and created a robust and easy dicom entity structure for you.</p>
 

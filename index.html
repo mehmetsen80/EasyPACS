@@ -12,7 +12,7 @@
   <body>
     <section class="page-header">
       <h1 class="project-name">Easy PACS</h1>
-      <h2 class="project-tagline">Easiest way to store dicom files. A new open-source dicom listener PACS Server build with DCM4CHE tools</h2>
+      <h2 class="project-tagline">The easiest way to store dicom files with a new open-source dicom listener for your PACS Server</h2>
       <a href="https://github.com/mehmetsen80/EasyPACS" class="btn">View on GitHub</a>
       <a href="https://github.com/mehmetsen80/EasyPACS/zipball/master" class="btn">Download .zip</a>
       <a href="https://github.com/mehmetsen80/EasyPACS/tarball/master" class="btn">Download .tar.gz</a>
@@ -22,12 +22,32 @@
       <h3>
 <a id="welcome-to-easypacs" class="anchor" href="#welcome-to-easypacs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome to EasyPACS.</h3>
 
-<p>Easy PACS allows you to setup a PACS Server which you can view your dicom images online. It uses DCM4CHE tools with the latest frameworks such as Spring Boot and Gradle Build Environment. No need to setup a server anymore, the jar file is the file you only need and it contains the web-server itself. Thanks to Spring Boot, it enables the jar file to become both a listener (server) and web at the same time. </p>
+<p>Easy PACS allows you to setup a PACS Server with the ability to view your dicom images online. It uses <a href="http://www.dcm4che.org/">dcm4che</a> API tools re-written with the latest frameworks such as Spring Boot and Gradle Build Environment. No need to setup a server anymore, the <em><strong>jar</strong></em> file is the file you only need and it already contains the web-server within. Thanks to Spring Boot, it enables the jar file to become both the listener (server) and web at the same time. </p>
 
 <h3>
 <a id="object-model" class="anchor" href="#object-model" aria-hidden="true"><span class="octicon octicon-link"></span></a>Object Model</h3>
 
-<p>The server accepts all the dicom files and generates all the required dicom entities that is being populated to database. The dicom entities are  <em><strong>Patient, Study, Series, Equipment and Instance</strong></em>.  </p>
+<p>The server accepts all the dicom files and generates the its entities data that is being populated to database. The dicom entities are  <em><strong>Patient, Study, Series, Equipment and Instance</strong></em>.  They are reflected to your MYSQL database by the JPA Entity Manager by converting the entities into re-usable object models. </p>
+
+<h3>
+<a id="infrastructure" class="anchor" href="#infrastructure" aria-hidden="true"><span class="octicon octicon-link"></span></a>Infrastructure</h3>
+
+<p>Easy PACS uses several frameworks and platforms such as Spring Boot Framework, JPA/Hibernate, Thymeleaf and Gradle. The <a href="https://github.com/mehmetsen80/EasyPACS">source code</a> will inspire other developers as well in terms of using a compact platform with less code and maximum efficiency. </p>
+
+<h3>
+<a id="dicom-standards" class="anchor" href="#dicom-standards" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dicom Standards</h3>
+
+<p>A dicom file holds all patient data including images as binary format.  </p>
+
+<h3>
+<a id="why-easypacs" class="anchor" href="#why-easypacs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Why EasyPACS?</h3>
+
+<p>Plenty of PACS server in the market, you might ask why another open-source PACS server? The PACS has right now $3 billion market size and they assume it will grow over $4 billion in 2018 with different archive models such as VNA (Vendor Neutral Archive). The problem is that the vendors charge too much for the health organizations mostly based on number of images just for a standalone PACS servers. The reality is that the customer most likely need to customize the PACS according to local needs. As experienced PACS developers, we worked on several but similar PACSs and all of them needed to add different logic. In short, we provide the cheapest and most customizable product solutions ever for the health organizations. </p>
+
+<h3>
+<a id="dicom-standards-1" class="anchor" href="#dicom-standards-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dicom Standards</h3>
+
+<p>The standards of dicoms are specified by <a href="http://www.nema.org/">nema.org</a> an association for the need of medical standards. PACS is known Picture Archiving and Communication System and several PACSs are in the market and many look very similar. We  examined the standards of dicom files and created a robust and easy dicom entity structure for you.</p>
 
 <h3>
 <a id="database-is-mysql" class="anchor" href="#database-is-mysql" aria-hidden="true"><span class="octicon octicon-link"></span></a>Database is MYSQL</h3>
@@ -47,9 +67,11 @@ ALTER TABLE tbl_instance ADD CONSTRAINT FK_tbl_instance_pkTBLSeriesID FOREIGN KE
 </code></pre>
 
 <h3>
-<a id="dicom-logic" class="anchor" href="#dicom-logic" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dicom Logic</h3>
+<a id="dicom-entities" class="anchor" href="#dicom-entities" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dicom Entities</h3>
 
-<p>Dicom entity structure is known as:</p>
+<p>The well known dicom model is known as  <em><strong>Patient --&gt; NxStudy --&gt; MxSeries --&gt; ZxInstances</strong></em> which is explained below. Normally, all these data are contained per dicom file. So, it is up to the vendor how the dicom data is processed. We created an additional entity next to the Series called <em><strong>'Equipment'</strong></em> that shows the details of the modality being used by the dicom sender. The modality can be a CT, X-Ray, Ultrasound machine etc. Another important note is that <em><strong>Instance</strong></em> can be either the image or SR document. Here, we only use images, so we keep the <strong>instance</strong> as <strong>images</strong> on the server web site.</p>
+
+<p>Remember each dicom file keeps the hierarchy but is dependent on the vendor how to parse the file </p>
 
 <pre><code>Patient --&gt; NxStudy --&gt; MxSeries --&gt; ZxInstances 
 Series --&gt; Equipment
@@ -61,6 +83,8 @@ Series --&gt; Equipment
 
 <h3>
 <a id="entity-diagram" class="anchor" href="#entity-diagram" aria-hidden="true"><span class="octicon octicon-link"></span></a>Entity Diagram</h3>
+
+<p>The relationship between the entities is illustrated as below:</p>
 
 <p><img src="https://2kere2beseder.files.wordpress.com/2015/04/easypacsorm_final.jpg" alt="Easy PACS Entity Diagram"></p>
 

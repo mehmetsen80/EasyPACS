@@ -37,9 +37,12 @@
 <h3>
 <a id="why-easypacs" class="anchor" href="#why-easypacs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Why EasyPACS?</h3>
 
-<p>Plenty of PACS servers exist in the market, so you might ask why another open-source PACS server? The PACS has right now $3 billion market size and they assume it will grow over $4 billion in 2018 with different archive models such as VNA (Vendor Neutral Archive). </p>
+<p>Plenty of PACS servers exist in the market, so you might ask why another open-source PACS server? The PACS has right now $3 billion market size and they assume it will grow over $4 billion in 2018 with different archive models such as VNA (Vendor Neutral Archive). The problem is that the vendors charge too much for the health organizations mostly based on number of images just for  standalone PACS servers.</p>
 
-<p>The problem is that the vendors charge too much for the health organizations mostly based on number of images just for  standalone PACS servers. First of all, the reality is that the customer needs a cheap PACS server to minimize the cost. Secondly, they most likely need to customize the PACS as well according to local needs. As experienced PACS developers, we worked on several PACSs and all of them needed to add different local logic. In short, we provide the cheapest and most customizable PACS solutions ever for the health organizations. </p>
+<h3>
+<a id="solution" class="anchor" href="#solution" aria-hidden="true"><span class="octicon octicon-link"></span></a>Solution</h3>
+
+<p>First of all, the reality is that the customer needs a cheap PACS server to minimize the cost. Secondly, they most likely need to customize the PACS as well according to local needs. As experienced PACS developers, we worked on several PACSs and all of them needed to add different local logic. In short, we provide the cheapest and most customizable PACS solutions ever for the health organizations. </p>
 
 <h3>
 <a id="dicom-standards" class="anchor" href="#dicom-standards" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dicom Standards</h3>
@@ -66,7 +69,7 @@ ALTER TABLE tbl_instance ADD CONSTRAINT FK_tbl_instance_pkTBLSeriesID FOREIGN KE
 <h3>
 <a id="dicom-entities" class="anchor" href="#dicom-entities" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dicom Entities</h3>
 
-<p>The well known dicom model is known as  <em><strong>Patient --&gt; NxStudy --&gt; MxSeries --&gt; ZxInstances</strong></em> which is explained below. Normally, all these data are contained per dicom file. So, it is up to the vendor how the dicom data is processed. We created an additional entity next to the Series called <em><strong>'Equipment'</strong></em> that shows the details of the modality being used by the dicom sender. The modality can be a CT, X-Ray, Ultrasound machine etc. Another important note is that <em><strong>Instance</strong></em> can be either the image or SR document. Here, we only use images, so we keep the <strong>instance</strong> as <strong>images</strong> on the server web site.</p>
+<p>The well known dicom model is known as  <em><strong>Patient --&gt; NxStudy --&gt; MxSeries --&gt; ZxInstances</strong></em> . Normally, all these data are contained per dicom file. So, it is up to the vendor how the dicom data is processed. We created an additional entity next to the Series called <em><strong>'Equipment'</strong></em> that shows the details of the modality being used by the dicom sender. The modality can be a CT, X-Ray, Ultrasound machine etc. Another important note is that <em><strong>Instance</strong></em> can be either the image or SR document. Here, we only use images, so we keep the <strong>instance</strong> as <strong>images</strong> on the server web site.</p>
 
 <p>Remember each dicom file keeps the hierarchy but is dependent on the vendor how to parse the file </p>
 
@@ -157,7 +160,10 @@ pacs.storage.image = ./tmp/img
 <p>THAT IS IT!</p>
 
 <ul>
-<li>Go now to  <em><strong>http://localhost:8085</strong></em>  You will see such a screen:</li>
+<li>Go now to  <em><strong>http://localhost:8085</strong></em>  You will see such a screen:
+<a href="https://2kere2beseder.files.wordpress.com/2015/04/homepage.jpg">Easy PACS</a>
+<img src="https://2kere2beseder.files.wordpress.com/2015/04/homepage.jpg" alt="EasyPACS Home Page">
+</li>
 </ul>
 
       <footer class="site-footer">

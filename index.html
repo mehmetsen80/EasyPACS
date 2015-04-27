@@ -22,7 +22,7 @@
       <h3>
 <a id="welcome-to-easypacs" class="anchor" href="#welcome-to-easypacs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome to EasyPACS.</h3>
 
-<p>Easy PACS allows you to setup a PACS Server with the ability to view your dicom images online. It uses <a href="http://www.dcm4che.org/">dcm4che</a> API tools re-written with the latest frameworks such as Spring Boot and Gradle Build Environment. No need to setup a server anymore, the <em><strong>jar</strong></em> file is the file you only need and it already contains the web-server within. Thanks to Spring Boot, it enables the jar file to become both the listener (server) and web at the same time. </p>
+<p>Easy PACS allows you to setup a PACS Server with online dicom viewer. It uses <a href="http://www.dcm4che.org/">dcm4che</a> API tools re-written with the latest frameworks such as Spring Boot and Gradle Build Environment. No need to setup a server anymore, the <em><strong>jar</strong></em> file is the file you only need and it already contains the web-server within. Thanks to Spring Boot, it enables the jar file to become both the listener (server) and web at the same time. </p>
 
 <h3>
 <a id="object-model" class="anchor" href="#object-model" aria-hidden="true"><span class="octicon octicon-link"></span></a>Object Model</h3>
@@ -32,27 +32,27 @@
 <h3>
 <a id="infrastructure" class="anchor" href="#infrastructure" aria-hidden="true"><span class="octicon octicon-link"></span></a>Infrastructure</h3>
 
-<p>Easy PACS uses several frameworks and platforms such as Spring Boot Framework, JPA/Hibernate, Thymeleaf and Gradle. The <a href="https://github.com/mehmetsen80/EasyPACS">source code</a> will inspire other developers as well in terms of using a compact platform with less code and maximum efficiency. </p>
+<p>Easy PACS uses several frameworks and platforms such as Spring Boot Framework, JPA/Hibernate, Thymeleaf and Gradle. The <a href="https://github.com/mehmetsen80/EasyPACS">source code</a> will inspire other developers as well in terms of using a compact platform with less code and maximum efficiency. Remember that both server and web is in one single jar file.</p>
 
 <h3>
 <a id="why-easypacs" class="anchor" href="#why-easypacs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Why EasyPACS?</h3>
 
-<p>Plenty of PACS servers exist in the market, so you might ask why another open-source PACS server? The PACS has right now $3 billion market size and they assume it will grow over $4 billion in 2018 with different archive models such as VNA (Vendor Neutral Archive). The problem is that the vendors charge too much for the health organizations mostly based on number of images just for  standalone PACS servers.</p>
+<p>Plenty of PACS servers exist in the market, so you might ask why another open-source PACS server? The PACS has right now $3 billion market size and they assume it will grow over $4 billion in 2018 with different archive models such as VNA (Vendor Neutral Archive). The problem is that the vendors charge too much for the health organizations mostly based on number of images just for standalone PACS servers.</p>
 
 <h3>
 <a id="solution" class="anchor" href="#solution" aria-hidden="true"><span class="octicon octicon-link"></span></a>Solution</h3>
 
-<p>First of all, the reality is that the customer needs a cheap PACS server to minimize the cost. Secondly, they most likely need to customize the PACS as well according to local needs. As experienced PACS developers, we worked on several PACSs and all of them needed to add different local logic. In short, we provide the cheapest and most customizable PACS solutions ever for the health organizations. </p>
+<p>The customer needs a cheaper PACS server to minimize along with the ability to customize the PACS according to their workflow logic. As experienced PACS developers, we have been working on several PACSs and all of them needed different  logic. Setting up a standalone PACS is usually not enough, especially it is not worth when expensive. In short, we provide the cheapest and best customization of PACS solutions ever for the health organizations. </p>
 
 <h3>
 <a id="dicom-standards" class="anchor" href="#dicom-standards" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dicom Standards</h3>
 
-<p>The standards of dicoms are specified by <a href="http://www.nema.org/">nema.org</a> an association for the need of medical standards. PACS is known Picture Archiving and Communication System and several PACSs are in the market and many look very similar. We  examined the standards of dicom files and created a robust and easy dicom entity structure for you.</p>
+<p>The standards of dicoms are specified by <a href="http://www.nema.org/">nema.org</a> an association for the need of medical standards. PACS is known Picture Archiving and Communication System and several PACSs run in the market which most of them look very similar. They all rely on the same dicom standards with different enterprise approach. We examined the standards of dicom files and created a robust and easy dicom entity model for you.</p>
 
 <h3>
 <a id="database-is-mysql" class="anchor" href="#database-is-mysql" aria-hidden="true"><span class="octicon octicon-link"></span></a>Database is MYSQL</h3>
 
-<p>Please run the below sql queries to generate your tables</p>
+<p>We use MYSQL database for its flexibility and ease of usage. Please run the below sql queries to generate your data tables</p>
 
 <pre><code>CREATE TABLE tbl_patient (pkTBLPatientID BIGINT AUTO_INCREMENT NOT NULL, createdDate DATETIME, modifiedDate DATETIME, patientAge VARCHAR(10), patientBirthday DATE, patientID VARCHAR(100), patientName VARCHAR(100), patientSex VARCHAR(10), PRIMARY KEY (pkTBLPatientID))
 CREATE TABLE tbl_study (pkTBLStudyID BIGINT AUTO_INCREMENT NOT NULL, accessionNumber VARCHAR(30), additionalPatientHistory VARCHAR(300), admittingDiagnosesDescription VARCHAR(200), createdDate DATETIME, modifiedDate DATETIME, referringPhysicianName VARCHAR(100), studyDateTime DATETIME, studyDescription VARCHAR(300), studyID VARCHAR(50), studyInstanceUID VARCHAR(100), studyPriorityID VARCHAR(40), studyStatusID VARCHAR(40), pkTBLPatientID BIGINT, PRIMARY KEY (pkTBLStudyID))
@@ -69,9 +69,9 @@ ALTER TABLE tbl_instance ADD CONSTRAINT FK_tbl_instance_pkTBLSeriesID FOREIGN KE
 <h3>
 <a id="dicom-entities" class="anchor" href="#dicom-entities" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dicom Entities</h3>
 
-<p>The well known dicom model is known as  <em><strong>Patient --&gt; NxStudy --&gt; MxSeries --&gt; ZxInstances</strong></em> . Normally, all these data are contained per dicom file. So, it is up to the vendor how the dicom data is processed. We created an additional entity next to the Series called <em><strong>'Equipment'</strong></em> that shows the details of the modality being used by the dicom sender. The modality can be a CT, X-Ray, Ultrasound machine etc. Another important note is that <em><strong>Instance</strong></em> can be either the image or SR document. Here, we only use images, so we keep the <strong>instance</strong> as <strong>images</strong> on the server web site.</p>
+<p>The well known dicom standard is known as  <em><strong>Patient --&gt; NxStudy --&gt; MxSeries --&gt; ZxInstances</strong></em> . Normally, all these data types are contained per dicom file. So, it is up to the vendor how the dicom data is processed. We created an additional entity next to the Series called <em><strong>'Equipment'</strong></em> that shows the details of the modality being used by the dicom sender. The modality can be the CT, X-Ray or Ultrasound machine etc. Another important note is that <em><strong>Instance</strong></em> can be either the image or SR document. Here, we only use images, so we keep the <strong>instance</strong> as <strong>images</strong> on the server level.</p>
 
-<p>Remember each dicom file keeps the hierarchy but is dependent on the vendor how to parse the file </p>
+<p>Remember each dicom file keeps the hierarchy but is dependent on the vendor how to parse the file.</p>
 
 <pre><code>Patient --&gt; NxStudy --&gt; MxSeries --&gt; ZxInstances 
 Series --&gt; Equipment
@@ -91,7 +91,7 @@ Series --&gt; Equipment
 <h3>
 <a id="how-to-setup-java-environment" class="anchor" href="#how-to-setup-java-environment" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to Setup Java Environment</h3>
 
-<p>Java platform is tricky. It uses 32 bit Java environment along with needed <em>**clib</em>**_ files to enable the image file conversions</p>
+<p>Java platform is tricky. It uses 32 bit Java environment along with needed <em>**clib</em>**_ files to enable the image file conversions. Please download and copy paste the below clib files under your jdk folder.</p>
 
 <ol>
 <li>Put 32 bit  <a href="https://2kere2beseder.files.wordpress.com/2015/04/clib_files.zip">clib_jiio.dll, clib_jiio_sse2.dll, clib_jiio_util.dll</a> dll files under C:\Program Files (x86)\Java\jdk1.8.0_45\bin</li>
@@ -117,13 +117,13 @@ Variable Value: %JAVA_HOME%\jre\bin
 <a id="lets-download--run-our-jar-file" class="anchor" href="#lets-download--run-our-jar-file" aria-hidden="true"><span class="octicon octicon-link"></span></a>Let's Download &amp; run our jar file!</h3>
 
 <ul>
-<li>First download <a href="https://s3-us-west-2.amazonaws.com/easypacs/EasyPACS-0.1.zip">EasyPACS-0.1.zip</a> file. It contains only 2 files; <em><strong>application.properties</strong></em> and <em><strong>easy.pacs-0.0.1-SNAPSHOT.jar</strong></em> files </li>
+<li>First download the folder template <a href="https://s3-us-west-2.amazonaws.com/easypacs/EasyPACS.zip">EasyPACS.zip</a> file. It contains <em><strong>tmp</strong></em> directory that stores the dicom and image files. It also contains 2 files; <em><strong>application.properties</strong></em> and <em><strong>easy.pacs-0.0.1-SNAPSHOT.jar</strong></em> files. Please replace the jar file with latest version<a href="https://s3-us-west-2.amazonaws.com/easypacs/easy.pacs-0.0.1-SNAPSHOT.jar">version</a>. </li>
 </ul>
 
 <h3>
 <a id="applicationproperties" class="anchor" href="#applicationproperties" aria-hidden="true"><span class="octicon octicon-link"></span></a>application.properties</h3>
 
-<p>update your MYSQL connection string <strong>username</strong>, <strong>password</strong> and <strong>url</strong> address. Please replace <strong>localhost</strong> with your <strong>ip address</strong> if needed</p>
+<p>Please follow the below instructions to modify your application.properties file. Update your MYSQL connection string <strong>username</strong>, <strong>password</strong> and <strong>url</strong> address. Please replace <strong>localhost</strong> with your <strong>ip address</strong> if needed.</p>
 
 <pre><code>datasource.primary.url=jdbc:mysql://localhost:3306/dbdicom
 datasource.primary.username=[username]

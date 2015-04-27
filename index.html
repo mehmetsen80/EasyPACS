@@ -178,11 +178,15 @@ Unzip it in your disk and go to the bin directory. Use it as shown below:</p>
 <pre><code># storescu -c WHATEVER@localhost:104 "C:\dcmsamples\MARTIN^ZANE^"\*
 </code></pre>
 
-<p>It means you send the dicom files of <strong>MARTIN^ZANE^</strong> to the AE Title <em><strong>WHATEVER</strong></em> [it can be any name because we setup AE Title as star "<em>" ], to the port _</em><em>104</em><em>_ on _</em><em>localhost</em>*_ (you can write your ip if you send remotely)</p>
+<p>It means you send the dicom files of <strong>MARTIN^ZANE^</strong> to the AE Title <em><strong>WHATEVER</strong></em> [it can be any name because we setup AE Title as star], to the port <em><strong>104</strong></em> on <em><strong>localhost</strong></em> (you can write your ip if you send remotely)</p>
 
 <p>Below is the screenshot that shows how it is used on console</p>
 
 <p><a href="https://2kere2beseder.files.wordpress.com/2015/04/storescu.jpg"><img src="https://2kere2beseder.files.wordpress.com/2015/04/storescu.jpg" alt="storescu command"></a></p>
+
+<blockquote>
+<p>If you need sample dcm files, here you can download the test dcm files of <a href="https://s3-us-west-2.amazonaws.com/easypacs/MARTIN%5EZANE%5E.zip">MARTIN^ZANE^</a>. Don't worry about the HIPAA rules, it is just a test patient file.</p>
+</blockquote>
 
 <p>Our server receives the incoming dicom files and starts to create the entities. This is the server page that lists the received patients. In this page, you will see the monitor messages as well that indicates the incoming patient transfers. </p>
 
